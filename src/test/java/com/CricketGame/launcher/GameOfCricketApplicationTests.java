@@ -1,4 +1,4 @@
-package com.CricketGame.GameOfCricket;
+package com.cricketGame.launcher;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
