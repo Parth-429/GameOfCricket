@@ -1,21 +1,22 @@
 package com.cricketGame.models;
+import com.cricketGame.models.stats.Stats;
+import com.cricketGame.models.stats.TeamStats;
 import lombok.Data;
 
 import java.util.List;
 
 @Data
 public class Team {
+    private long teamId;
     private String name;
-    private int totalScore;
-    private String overs;
-    private int wickets;
-    private final int noPlayers;
+    private Stats teamStats;
+    private final int teamSize;
     private List<Player> players;
-    private List<Bowler> bowlers;
-    public Team(String name, List<Player> players, List<Bowler> bowler){
+    public Team(long teamId, String name, List<Player> players){
+        this.teamId = teamId;
         this.name = name;
-        this.noPlayers = players.size();
+        this.teamSize = players.size();
         this.players = players;
-        this.bowlers = bowler;
+        this.teamStats = new TeamStats();
     }
 }

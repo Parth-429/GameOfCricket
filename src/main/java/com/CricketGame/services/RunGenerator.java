@@ -1,21 +1,13 @@
 package com.cricketGame.services;
 
-import com.cricketGame.models.Runs;
+import com.cricketGame.models.enums.Runs;
 
+import java.util.List;
 import java.util.Random;
-
 public class RunGenerator {
-    public Runs generateRun(){
-        Random run = new Random();
-        return switch (run.nextInt(8)) {
-            case 1 -> Runs.ONE;
-            case 2 -> Runs.TWO;
-            case 3 -> Runs.THREE;
-            case 4 -> Runs.FOUR;
-            case 5 -> Runs.FIVE;
-            case 6 -> Runs.SIX;
-            case 7 -> Runs.WICKET;
-            default -> Runs.ZERO;
-        };
+    public static Runs generateRun(){
+        Random rm = RandomNumberGenerator.getInstance();
+        List<Runs> runs = List.of(Runs.values());
+        return runs.get(rm.nextInt(runs.size()));
     }
 }
