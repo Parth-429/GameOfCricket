@@ -1,12 +1,12 @@
 package com.cricketGame.services;
 
-import com.cricketGame.models.enums.Coin;
+import com.cricketGame.models.Coin;
 
 import java.util.Random;
 
 public class TossCoin {
-    public static Coin tossCoin(){
-        Random rm = RandomNumberGenerator.getInstance();
+    public Coin tossCoin(){
+        Random rm = new Random();
         int result = rm.nextInt(2);
         return switch (result) {
             case 0 -> Coin.HEAD;
