@@ -17,5 +17,6 @@ public class Team {
         this.noPlayers = players.size();
         this.players = players;
         this.bowlers = bowler;
+        this.teamStats = new TeamStats();
     }
 }
