@@ -17,6 +17,7 @@ public class Team {
         this.name = name;
         this.teamSize = players.size();
         this.players = players;
+
         this.teamStats = new TeamStats();
     }
 }
