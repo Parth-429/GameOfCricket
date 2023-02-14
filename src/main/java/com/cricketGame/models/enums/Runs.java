@@ -21,8 +21,8 @@ public enum Runs {
         this.run = run;
     }
 
-    private static Map<Runs,Integer> runProbabilityMapForBatsman = new HashMap<>(Map.ofEntries(Map.entry(ZERO,15), Map.entry(ONE,30),Map.entry(TWO,25),Map.entry(THREE,5),Map.entry(FOUR,15),Map.entry(SIX,10), Map.entry(WICKET,5)));
-    private static Map<Runs,Integer> runProbabilityMapForBowler = new HashMap<>(Map.ofEntries(Map.entry(ZERO,25), Map.entry(ONE,25),Map.entry(TWO,10),Map.entry(THREE,1),Map.entry(FOUR,5),Map.entry(SIX,5), Map.entry(WICKET,20)));
+    private static Map<Runs,Integer> runProbabilityMapForBatsman = new HashMap<>(Map.ofEntries(Map.entry(ZERO,32), Map.entry(ONE,32),Map.entry(TWO,16),Map.entry(THREE,2),Map.entry(FOUR,8),Map.entry(SIX,4), Map.entry(WICKET,4)));
+    private static Map<Runs,Integer> runProbabilityMapForBowler = new HashMap<>(Map.ofEntries(Map.entry(ZERO,32), Map.entry(ONE,16),Map.entry(TWO,8),Map.entry(THREE,1),Map.entry(FOUR,4),Map.entry(SIX,4), Map.entry(WICKET,16)));
 
     private static List<Runs> listOfRunsForBatsman;
     private static List<Runs> listOfRunsForBowler;

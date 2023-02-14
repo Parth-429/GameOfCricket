@@ -7,11 +7,9 @@ import java.util.Random;
 public class TossCoin {
     public static Coin tossCoin(){
         Random rm = RandomNumberGenerator.getInstance();
-        int result = rm.nextInt(2);
-        return switch (result) {
-            case 0 -> Coin.HEAD;
-            case 1 -> Coin.TAIL;
-            default -> tossCoin();
-        };
+        if(rm.nextBoolean())
+            return Coin.HEAD;
+        else
+            return Coin.TAIL;
     }
 }

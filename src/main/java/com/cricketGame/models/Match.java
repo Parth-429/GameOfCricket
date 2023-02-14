@@ -11,17 +11,14 @@ import java.util.List;
 public class Match {
     private long matchId;
     private Team team1, team2;
-    private final int overs;
     private List<Innings> innings;
     private Team winner;
-    public Match(long matchId, Team team1, Team team2, int overs){
+    public Match(long matchId, Team team1, Team team2){
         this.matchId = matchId;
         this.team1 = team1;
         this.team2 = team2;
-        this.overs = overs;
         this.innings = new ArrayList<>();
     }
-
     public void swap(){
         Team temp = this.team1;
         this.team1 = this.team2;

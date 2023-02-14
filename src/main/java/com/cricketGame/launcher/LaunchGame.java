@@ -6,7 +6,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class LaunchGame {
-
 	public static void main(String[] args) {
 		GameLauncher.startGame();
 	}

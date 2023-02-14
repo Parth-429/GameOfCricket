@@ -9,9 +9,9 @@ public class Innings {
     private final Team battingTeam;
     private final Team bowlingTeam;
     private ScoreCard inningScoreCard;
-    public Innings(Team battingTeam, Team bowlingTeam, int overs){
+    public Innings(Team battingTeam, Team bowlingTeam){
         this.battingTeam = battingTeam;
         this.bowlingTeam = bowlingTeam;
-        this.inningScoreCard = new ScoreCard(overs);
+        this.inningScoreCard = new ScoreCard();
     }
 }

@@ -11,7 +11,7 @@ public class ShowBattingStats{
         BatsmanStats batsmanStats = (BatsmanStats) batsman.getBatsmanStats();
         String stats = String.format("\t\t%4d\t%4d\t%3d\t%4d",batsmanStats.getTotalRunScored(),batsmanStats.getBallTaken(),batsmanStats.getRunTakenStatisticsHashMap().get(RunStatistics.SIX_RUNS),batsmanStats.getRunTakenStatisticsHashMap().get(RunStatistics.FOUR_RUNS));
         if(batsmanStats.getBattingStatus().equals(PlayerBattingStatus.OUT) && batsmanStats.getWicketStats().isPresent())
-            stats = nameOfBatsman + stats + String.format("\n(%s)", batsmanStats.getWicketStats().get().getCheckWicket().get().getWicketType() + " "  + batsmanStats.getWicketStats().get().getBowler().getFirstName() + " " + batsmanStats.getWicketStats().get().getBowler().getLastName() );
+            stats = nameOfBatsman + stats + String.format("\n(%s)", batsmanStats.getWicketStats().get().getCheckWicket().get().getWicketType().getWicketType() + " by "  + batsmanStats.getWicketStats().get().getBowler().getFirstName() + " " + batsmanStats.getWicketStats().get().getBowler().getLastName() );
         else if(batsmanStats.getBattingStatus().equals(PlayerBattingStatus.NOT_OUT))
             stats = nameOfBatsman + stats + "\n(Not out)";
         return stats;
