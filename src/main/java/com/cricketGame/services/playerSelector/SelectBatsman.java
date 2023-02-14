@@ -1,10 +1,8 @@
 package com.cricketGame.services.playerSelector;
 
-import com.cricketGame.models.Player;
-import com.cricketGame.services.RandomNumberGenerator;
+import com.cricketGame.models.player.Player;
 
 import java.util.List;
-import java.util.Random;
 
 public class SelectBatsman {
     public static Player selectBatsman(List<Player> players){

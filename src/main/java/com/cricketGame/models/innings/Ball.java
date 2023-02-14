@@ -1,8 +1,8 @@
-package com.cricketGame.models;
+package com.cricketGame.models.innings;
 
 import com.cricketGame.models.enums.Runs;
+import com.cricketGame.models.player.Player;
 import com.cricketGame.models.stats.BatsmanStats;
-import com.cricketGame.models.stats.BowlerStats;
 import lombok.Data;
 
 import java.util.Optional;

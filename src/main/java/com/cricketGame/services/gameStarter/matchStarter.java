@@ -1,15 +1,18 @@
-package com.cricketGame.services;
+package com.cricketGame.services.gameStarter;
 
 import com.cricketGame.models.*;
 import com.cricketGame.models.enums.Coin;
+import com.cricketGame.models.innings.Innings;
 import com.cricketGame.models.stats.TeamStats;
-import com.cricketGame.services.objectCreation.MatchFactory;
+import com.cricketGame.services.generators.ObjectIDGenerator;
+import com.cricketGame.services.generators.TossCoin;
+import com.cricketGame.services.factory.MatchFactory;
 import com.cricketGame.view.ShowScoreCard;
 
-import static com.cricketGame.services.StartInning.playInning;
+import static com.cricketGame.services.gameStarter.inningStarter.playInning;
 
 
-public class GameLauncher {
+public class matchStarter {
 
     public static void startGame() {
         Match match = MatchFactory.create(ObjectIDGenerator.getID());

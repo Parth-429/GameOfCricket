@@ -2,6 +2,8 @@ package com.cricketGame.view;
 
 import com.cricketGame.models.*;
 import com.cricketGame.models.enums.PlayerBattingStatus;
+import com.cricketGame.models.innings.Innings;
+import com.cricketGame.models.player.Player;
 import com.cricketGame.models.stats.BatsmanStats;
 import com.cricketGame.models.stats.BowlerStats;
 import com.cricketGame.view.showStats.ShowBallingStats;

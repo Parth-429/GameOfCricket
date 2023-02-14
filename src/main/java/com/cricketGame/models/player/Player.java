@@ -1,15 +1,17 @@
-package com.cricketGame.models;
+package com.cricketGame.models.player;
 import com.cricketGame.models.enums.Role;
 import com.cricketGame.models.stats.BatsmanStats;
 import com.cricketGame.models.stats.BowlerStats;
 import com.cricketGame.models.stats.Stats;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(callSuper=false)
 public abstract class Player extends Person{
     private Role role;
     private Stats bowlerStats;

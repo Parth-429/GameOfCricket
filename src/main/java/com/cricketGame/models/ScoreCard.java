@@ -1,6 +1,8 @@
 package com.cricketGame.models;
 
 import com.cricketGame.constants.Constants;
+import com.cricketGame.models.innings.Over;
+import com.cricketGame.models.innings.Wicket;
 import lombok.Data;
 
 import java.util.ArrayList;

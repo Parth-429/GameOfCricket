@@ -1,4 +1,4 @@
-package com.cricketGame.services.objectCreation;
+package com.cricketGame.services.factory;
 
 import com.cricketGame.models.Match;
 import com.cricketGame.models.Team;

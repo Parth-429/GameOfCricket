@@ -1,4 +1,5 @@
 package com.cricketGame.models;
+import com.cricketGame.models.player.Player;
 import com.cricketGame.models.stats.Stats;
 import com.cricketGame.models.stats.TeamStats;
 import lombok.Data;

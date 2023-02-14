@@ -1,6 +1,4 @@
-package com.cricketGame.services;
-
-import lombok.Singular;
+package com.cricketGame.services.generators;
 
 import java.util.Random;
 

@@ -1,4 +1,4 @@
-package com.cricketGame.services;
+package com.cricketGame.services.generators;
 
 import com.cricketGame.models.enums.Coin;
 

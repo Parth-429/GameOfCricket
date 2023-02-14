@@ -1,8 +1,7 @@
 package com.cricketGame.models;
 
-import lombok.AllArgsConstructor;
+import com.cricketGame.models.innings.Innings;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;

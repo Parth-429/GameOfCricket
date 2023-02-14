@@ -1,4 +1,4 @@
-package com.cricketGame.services;
+package com.cricketGame.services.generators;
 
 public class ObjectIDGenerator {
     public static long id=0;

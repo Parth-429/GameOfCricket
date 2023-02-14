@@ -1,11 +1,8 @@
-package com.cricketGame.services;
+package com.cricketGame.services.generators;
 
 import com.cricketGame.models.enums.Role;
 import com.cricketGame.models.enums.Runs;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import java.util.Random;
 public class RunGenerator {
 

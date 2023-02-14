@@ -1,4 +1,4 @@
-package com.cricketGame.models;
+package com.cricketGame.models.player;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

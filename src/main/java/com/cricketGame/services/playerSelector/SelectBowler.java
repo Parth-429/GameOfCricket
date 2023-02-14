@@ -1,11 +1,9 @@
 package com.cricketGame.services.playerSelector;
 
-import com.cricketGame.models.Player;
-import com.cricketGame.models.enums.Role;
-import com.cricketGame.services.RandomNumberGenerator;
+import com.cricketGame.models.player.Player;
+import com.cricketGame.services.generators.RandomNumberGenerator;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.Random;
 
 public class SelectBowler {

@@ -1,5 +1,7 @@
-package com.cricketGame.models;
+package com.cricketGame.models.innings;
 
+import com.cricketGame.models.ScoreCard;
+import com.cricketGame.models.Team;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

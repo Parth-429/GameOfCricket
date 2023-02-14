@@ -11,6 +11,6 @@ public enum WicketType {
     BOWLED("bowled"),
     RUN_OUT("runout"),
     LBW("lbw");
-    private String wicketType;
+    private final String wicketType;
 
 }

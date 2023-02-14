@@ -1,4 +1,4 @@
-package com.cricketGame.models;
+package com.cricketGame.models.innings;
 
 import com.cricketGame.models.enums.WicketType;
 import lombok.Data;

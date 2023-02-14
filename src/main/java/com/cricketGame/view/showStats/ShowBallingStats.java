@@ -1,6 +1,6 @@
 package com.cricketGame.view.showStats;
 
-import com.cricketGame.models.Player;
+import com.cricketGame.models.player.Player;
 import com.cricketGame.models.stats.BowlerStats;
 
 public class ShowBallingStats{
