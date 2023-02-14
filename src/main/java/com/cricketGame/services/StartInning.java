@@ -20,7 +20,7 @@ public class StartInning {
         List<Player> battingTeamBatsman = new ArrayList<>(battingTeam.getPlayers());
         List<Player> bowlingTeamBowlers = new ArrayList<>();
         for(Player player: bowlingTeam.getPlayers()){
-            if(player.getRole().equals(Role.Bowler))
+            if(player.getRole().equals(Role.BOWLER))
                 bowlingTeamBowlers.add(player);
         }
 
@@ -33,7 +33,13 @@ public class StartInning {
         for(Over over: scorecard.getOvers()){
             bowler = selectBowler(bowler, bowlingTeamBowlers);
             for(int ball=1; ball<=MAX_ALLOWED_BALLS; ball++) {
-                Runs runOnThisBall = RunGenerator.generateRun();
+
+                Runs runOnThisBall;
+                if(Role.BATSMAN.equals(pairOfStrikerNonStriker.getStriker().getRole()))
+                    runOnThisBall = RunGenerator.generateRun(Role.BATSMAN);
+                else
+                    runOnThisBall = RunGenerator.generateRun(Role.BOWLER);
+
                 over.getBallsOfOver().add(new Ball(ObjectIDGenerator.getID(), bowler, pairOfStrikerNonStriker, runOnThisBall));
                 if (runOnThisBall.equals(Runs.WICKET)) {
                     pairOfStrikerNonStriker.getStriker().getBatsmanStats().updateStats(runOnThisBall);

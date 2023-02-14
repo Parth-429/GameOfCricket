@@ -1,19 +1,22 @@
 package com.cricketGame.models.enums;
 
 import com.cricketGame.constants.Constants;
+import lombok.Data;
+import lombok.Getter;
 
+@Getter
 public enum Role {
-    Bowler("Bowler"),
-    Batsman("Batsman");
-    private String role;
+    BOWLER("Bowler"),
+    BATSMAN("Batsman");
+    private String roleOfPlayer;
     Role(String role){
-        this.role = role;
+        this.roleOfPlayer = role;
     }
     public static Role getRole(String role){
         if(Constants.BATTING_ROLE.equals(role))
-            return Role.Batsman;
+            return Role.BATSMAN;
         else if(Constants.BOWLING_ROLE.equals(role))
-            return Role.Bowler;
+            return Role.BOWLER;
         else return null;
     }
 }
