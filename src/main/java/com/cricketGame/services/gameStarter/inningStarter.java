@@ -86,7 +86,7 @@ public class inningStarter {
     private static void updateStatisticsAfterWicket(ScoreCard scorecard, List<Player> battingTeamBatsman, Pair pairOfStrikerNonStriker,
                                   Over over, int ball, Runs runOnThisBall) {
         getStriker(pairOfStrikerNonStriker).getBatsmanStats().updateStats(runOnThisBall);
-        Wicket wicket = new Wicket(getStriker(pairOfStrikerNonStriker).getPersonID(), getWicketType());
+        Wicket wicket = new Wicket(getStriker(pairOfStrikerNonStriker).getId(), getWicketType());
         over.getBallsOfOver().get(ball - 1).setWicket(wicket);
         scorecard.getWickets().add(wicket);
         pairOfStrikerNonStriker.setStriker(selectBatsman(battingTeamBatsman));

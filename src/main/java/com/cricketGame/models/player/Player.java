@@ -19,7 +19,8 @@ public abstract class Player extends Person{
     private int batsmanOrderNo;
 
     public Player(long playerID, String firstName, String lastName,  int age, int orderNo, Role role) {
-        super(playerID,firstName,lastName,age);
+        super(firstName,lastName,age);
+        this.setId(playerID);
         this.batsmanOrderNo = orderNo;
         this.role = role;
     }

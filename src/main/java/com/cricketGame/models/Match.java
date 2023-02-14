@@ -2,20 +2,23 @@ package com.cricketGame.models;
 
 import com.cricketGame.models.innings.Innings;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Data
-public class Match {
-    private long matchId;
+@EqualsAndHashCode(callSuper=false)
+public class Match extends Bean{
     private Team team1, team2;
+    private final int allowedTeamSize;
     private List<Innings> innings;
     private Team winner;
-    public Match(long matchId, Team team1, Team team2){
-        this.matchId = matchId;
+    public Match(long matchId, Team team1, Team team2, int allowedTeamSize){
+        super(matchId);
         this.team1 = team1;
         this.team2 = team2;
+        this.allowedTeamSize = allowedTeamSize;
         this.innings = new ArrayList<>();
     }
     public void swap(){

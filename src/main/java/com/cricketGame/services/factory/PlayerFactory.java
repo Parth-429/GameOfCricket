@@ -14,8 +14,8 @@ public class PlayerFactory{
     public static int playerNo = 0;
     public static Player create(long teamID) {
         long playerID = ObjectIDGenerator.getID();
-        String firstName = "Player" + playerID;
-        String lastName = "ABC";
+        String firstName = "Player_" + playerID + "_" +teamID;
+        String lastName = "";
         List<Role> roles = List.of(Role.values());
         Role role = roles.get(RandomNumberGenerator.getInstance().nextInt((roles.size())));
         int age = 32;

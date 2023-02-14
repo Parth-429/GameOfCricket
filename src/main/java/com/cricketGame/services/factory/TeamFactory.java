@@ -11,9 +11,9 @@ import java.util.List;
 
 public class TeamFactory{
     public static Team create(long match_ID) {
-        String name = "TeamX";
         long teamID = ObjectIDGenerator.getID();
-        int teamSize = 10;
+        String name = "Team_" + teamID + "_" + match_ID;
+        int teamSize = 11;
         List<Player> players = new ArrayList<>();
         for(int i=0; i<teamSize; i++){
             Player player = PlayerFactory.create(teamID);
@@ -21,6 +21,6 @@ public class TeamFactory{
         }
         PlayerFactory.resetPlayerNo();
         Collections.sort(players, Comparator.comparingInt(Player::getBatsmanOrderNo));
-        return new Team(teamID, name, players);
+        return new Team(teamID, name, players, teamSize );
     }
 }

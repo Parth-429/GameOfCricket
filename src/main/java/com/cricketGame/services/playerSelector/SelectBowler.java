@@ -15,7 +15,7 @@ public class SelectBowler {
 
         int i = 0;
         for(Player player: bowlers) {
-            if (player.getPersonID() == prevBowler.getPersonID())
+            if (player.getId() == prevBowler.getId())
                 break;
             i++;
         }
