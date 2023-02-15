@@ -24,14 +24,14 @@ public class matchStarter {
 
         Innings firstInning = match.addNewInnings(new Innings(match.getTeam1(), match.getTeam2()));
         int firstInningScore = playInning(firstInning.getBattingTeam(), firstInning.getBowlingTeam(),
-                firstInning.getInningScoreCard(), false);
+                firstInning, false);
         System.out.println(firstInning.getBattingTeam().getName() + " has Scored " + firstInningScore + " by losing " +
                            ((TeamStats) firstInning.getBattingTeam().getTeamStats()).getTotalWickets() + " wickets.");
         System.out.println("\nInning two is started and Target is " + (firstInningScore + 1) + " ...");
 
         Innings secondInning = match.addNewInnings(new Innings(match.getTeam2(), match.getTeam1()));
         int secondInningScore = playInning(secondInning.getBattingTeam(), secondInning.getBowlingTeam(),
-                secondInning.getInningScoreCard(), true);
+                secondInning, true);
         System.out.println(
                 secondInning.getBattingTeam().getName() + " has Scored " + secondInningScore + " by losing " +
                 ((TeamStats) secondInning.getBattingTeam().getTeamStats()).getTotalWickets() + " wickets.");

@@ -4,6 +4,7 @@ import com.cricketGame.models.innings.Ball;
 import com.cricketGame.models.enums.PlayerBattingStatus;
 import com.cricketGame.models.enums.RunStatistics;
 import com.cricketGame.models.enums.Runs;
+import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.HashMap;
@@ -11,12 +12,22 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Data
+@Entity
+@Table(name = "batsman_stats")
 public class BatsmanStats implements Stats{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private int runsScoredByBatsman =0;
     private int ballPlayedByBatsman =0;
     private double strikeRate=0;
+
+    @Enumerated(EnumType.STRING)
     private PlayerBattingStatus battingStatus = PlayerBattingStatus.NOT_BAT_YET;
+    @Transient
     private HashMap<RunStatistics, Integer> runStatisticsHashMap;
+
+    @Transient
     private Optional<Ball> wicketStats;
     public void updateStats(Runs runsTaken){
         this.battingStatus = PlayerBattingStatus.NOT_OUT;

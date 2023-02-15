@@ -3,6 +3,8 @@ import com.cricketGame.constants.Constants;
 import com.cricketGame.models.player.Player;
 import com.cricketGame.models.stats.Stats;
 import com.cricketGame.models.stats.TeamStats;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Transient;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -10,10 +12,14 @@ import java.util.List;
 
 @Data
 @EqualsAndHashCode(callSuper=false)
+@Entity
 public class Team extends Bean{
     private final String name;
+
+    @Transient
     private Stats teamStats;
     private int teamSize;
+    @Transient
     private List<Player> players;
     public Team(long teamId, String name, List<Player> players, int teamSize){
         super(teamId);

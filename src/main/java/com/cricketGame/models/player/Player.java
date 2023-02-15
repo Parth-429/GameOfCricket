@@ -3,6 +3,7 @@ import com.cricketGame.models.enums.Role;
 import com.cricketGame.models.stats.BatsmanStats;
 import com.cricketGame.models.stats.BowlerStats;
 import com.cricketGame.models.stats.Stats;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -12,9 +13,16 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper=false)
+@Entity
+@Table(name = "player")
 public abstract class Player extends Person{
+
+    @Enumerated(EnumType.STRING)
     private Role role;
+    @Transient
     private Stats bowlerStats;
+
+    @Transient
     private Stats batsmanStats;
     private int batsmanOrderNo;
 
