@@ -13,7 +13,9 @@ public class ShowMatchStats{
             result += String.format("\nTeam %s won by %d runs%n", match.getInnings().get(0).getBattingTeam().getName(), firstInningScore - secondInningScore);
             match.setWinner(match.getInnings().get(0).getBattingTeam());
         } else if (firstInningScore < secondInningScore) {
-            result += String.format("\nTeam %s won by %d wickets%n", match.getInnings().get(1).getBattingTeam().getName(), match.getInnings().get(1).getBattingTeam().getTeamSize() - ((TeamStats) match.getInnings().get(1).getBattingTeam().getTeamStats()).getTotalWickets());
+            result += String.format("\nTeam %s won by %d wickets%n",
+                    match.getInnings().get(1).getBattingTeam().getName(),
+                    match.getInnings().get(1).getBattingTeam().getTeamSize() - ((TeamStats) match.getInnings().get(1).getBattingTeam().getTeamStats()).getTotalWickets()-1);
             match.setWinner(match.getInnings().get(1).getBattingTeam());
         } else
             result += ("\nMatch has been Tied");

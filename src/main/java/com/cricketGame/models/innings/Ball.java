@@ -15,7 +15,7 @@ public class Ball extends Bean {
     private final Runs runMade;
     private Optional<Wicket> checkWicket;
     public Ball(long ballID, Player bowler, Pair batsmanPair, Runs run){
-        this.setId(ballID);
+        super(ballID);
         this.batsmanPair = batsmanPair;
         this.bowler = bowler;
         this.runMade = run;

@@ -16,7 +16,7 @@ public class Over extends Bean {
     private int overNo;
     private List<Ball> ballsOfOver = new ArrayList<>();
     public Over(int overNo){
-        this.setId(ObjectIDGenerator.getID());
+        super(ObjectIDGenerator.getID());
         this.overNo = overNo;
         this.ballsOfOver = new ArrayList<>();
     }

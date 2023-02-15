@@ -1,4 +1,4 @@
-package com.cricketGame.launcher;
+package com.cricketGame;
 
 import com.cricketGame.services.gameStarter.matchStarter;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

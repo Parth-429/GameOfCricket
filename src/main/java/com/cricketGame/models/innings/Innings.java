@@ -16,7 +16,7 @@ public class Innings extends Bean {
     private final Team bowlingTeam;
     private ScoreCard inningScoreCard;
     public Innings(Team battingTeam, Team bowlingTeam){
-        this.setId(ObjectIDGenerator.getID());
+        super(ObjectIDGenerator.getID());
         this.battingTeam = battingTeam;
         this.bowlingTeam = bowlingTeam;
         this.inningScoreCard = new ScoreCard();

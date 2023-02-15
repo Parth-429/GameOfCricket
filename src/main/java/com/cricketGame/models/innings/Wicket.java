@@ -12,7 +12,7 @@ public class Wicket extends Bean {
     private final WicketType wicketType;
     private Ball onWhichBall;
     public Wicket(long playerId, WicketType wicketType){
-        this.setId(ObjectIDGenerator.getID());
+        super(ObjectIDGenerator.getID());
         this.playerID = playerId;
         this.wicketType = wicketType;
         wicketNo++;
