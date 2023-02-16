@@ -23,9 +23,11 @@ public class Innings extends Bean {
     @ManyToOne(targetEntity = Team.class, cascade = CascadeType.ALL)
     @JoinColumn(name="bowling_team_id", referencedColumnName = "id")
     private final Team bowlingTeam;
-    @Transient
+    @OneToMany(targetEntity = Over.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "inning_id", referencedColumnName = "id")
     private List<Over> overs = new ArrayList<>();
-    @Transient
+    @ManyToMany( targetEntity = Wicket.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "inning_id", referencedColumnName = "id")
     private List<Wicket> wickets = new ArrayList<>();
     public Innings(Team battingTeam, Team bowlingTeam){
         super(ObjectIDGenerator.getID());

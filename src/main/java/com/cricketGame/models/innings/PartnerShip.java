@@ -16,9 +16,12 @@ public class PartnerShip{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Transient
+
+    @ManyToOne(targetEntity = Player.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "batsman1", referencedColumnName = "id")
     private Player striker;
-    @Transient
+    @ManyToOne(targetEntity = Player.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "batsman2", referencedColumnName = "id")
     private Player nonStriker;
     private int runs;
     public PartnerShip(Player striker, Player nonStriker, int runs) {
