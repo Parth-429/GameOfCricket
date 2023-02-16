@@ -19,10 +19,11 @@ public abstract class Player extends Person{
 
     @Enumerated(EnumType.STRING)
     private Role role;
-    @Transient
+    @OneToOne(targetEntity = BowlerStats.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "bowling_stats_id", referencedColumnName = "id")
     private Stats bowlerStats;
-
-    @Transient
+    @OneToOne(targetEntity = BatsmanStats.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "batting_stats_id", referencedColumnName = "id")
     private Stats batsmanStats;
     private int batsmanOrderNo;
 
