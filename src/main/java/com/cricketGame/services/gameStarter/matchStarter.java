@@ -4,13 +4,19 @@ import com.cricketGame.models.*;
 import com.cricketGame.models.enums.Coin;
 import com.cricketGame.models.innings.Innings;
 import com.cricketGame.models.stats.TeamStats;
+import com.cricketGame.services.daoServices.AllService;
+import com.cricketGame.services.daoServices.InningsService;
+import com.cricketGame.services.daoServices.MatchService;
 import com.cricketGame.services.generators.ObjectIDGenerator;
 import com.cricketGame.services.generators.TossCoin;
 import com.cricketGame.services.factory.MatchFactory;
 import com.cricketGame.view.ShowScoreCard;
+import lombok.Data;
+import org.springframework.stereotype.Component;
 
 import static com.cricketGame.services.gameStarter.inningStarter.playInning;
 
+@Data
 
 public class matchStarter {
 
@@ -23,6 +29,7 @@ public class matchStarter {
         System.out.println("\nInning one is started...");
 
         Innings firstInning = match.addNewInnings(new Innings(match.getTeam1(), match.getTeam2()));
+        AllService.inningsService.saveInnings(firstInning);
         int firstInningScore = playInning(firstInning.getBattingTeam(), firstInning.getBowlingTeam(),
                 firstInning, false);
         System.out.println(firstInning.getBattingTeam().getName() + " has Scored " + firstInningScore + " by losing " +
@@ -30,12 +37,14 @@ public class matchStarter {
         System.out.println("\nInning two is started and Target is " + (firstInningScore + 1) + " ...");
 
         Innings secondInning = match.addNewInnings(new Innings(match.getTeam2(), match.getTeam1()));
+        AllService.inningsService.saveInnings(secondInning);
         int secondInningScore = playInning(secondInning.getBattingTeam(), secondInning.getBowlingTeam(),
                 secondInning, true);
         System.out.println(
                 secondInning.getBattingTeam().getName() + " has Scored " + secondInningScore + " by losing " +
                 ((TeamStats) secondInning.getBattingTeam().getTeamStats()).getTotalWickets() + " wickets.");
         ShowScoreCard.showScoreCard(match);
+        AllService.matchService.saveMatch(match);
     }
 
 }

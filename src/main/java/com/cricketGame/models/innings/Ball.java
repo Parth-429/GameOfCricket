@@ -8,21 +8,23 @@ import com.cricketGame.models.stats.BatsmanStats;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import java.util.Optional;
 
 @Data
 @EqualsAndHashCode(callSuper=false)
 @Entity
+@NoArgsConstructor
 @Table(name = "ball")
 public class Ball extends Bean {
     @ManyToOne(targetEntity = Player.class, cascade = CascadeType.ALL)
     @JoinColumn(name="bowler_id", referencedColumnName = "id")
-    private final Player bowler;
+    private Player bowler;
     @Transient
     private PartnerShip batsmanPartnerShip;
     @Enumerated(EnumType.STRING)
-    private final Runs runMade;
+    private Runs runMade;
     private int ball_no;
     @Transient
     private Optional<Wicket> checkWicket;
@@ -34,6 +36,7 @@ public class Ball extends Bean {
         this.ball_no = ++Constants.CURRENT_BALL_NO;
     }
     public void setWicket(Wicket wicket){
+        wicket.setOnWhichBall(this);
         this.checkWicket = Optional.of(wicket);
         ((BatsmanStats)(this.batsmanPartnerShip.getStriker().getBatsmanStats())).setWicketStats(Optional.of(this));
     }

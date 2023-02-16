@@ -1,19 +1,23 @@
 package com.cricketGame.models.stats;
 
+import com.cricketGame.models.Bean;
 import com.cricketGame.models.enums.RunStatistics;
 import com.cricketGame.models.enums.Runs;
+import com.cricketGame.models.player.Player;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.util.HashMap;
 
 @Data
 @Entity
 @Table(name = "bowler_stats")
-public class BowlerStats implements Stats{
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+@EqualsAndHashCode(callSuper=false)
+public class BowlerStats extends Bean implements Stats{
+    @OneToOne(targetEntity = Player.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "player_id", referencedColumnName = "id")
+    private Player player;
     private int totalRunGiven;
     private int noOfBallsThrown;
     private int totalWicketsTaken;

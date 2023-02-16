@@ -3,20 +3,18 @@ package com.cricketGame.models.innings;
 import com.cricketGame.models.Bean;
 import com.cricketGame.models.enums.Runs;
 import com.cricketGame.models.player.Player;
+import com.cricketGame.services.generators.ObjectIDGenerator;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class PartnerShip{
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+@EqualsAndHashCode(callSuper=false)
+public class PartnerShip extends Bean{
     @ManyToOne(targetEntity = Player.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "batsman1", referencedColumnName = "id")
     private Player striker;
@@ -25,6 +23,7 @@ public class PartnerShip{
     private Player nonStriker;
     private int runs;
     public PartnerShip(Player striker, Player nonStriker, int runs) {
+        super(ObjectIDGenerator.getID());
         this.striker = striker;
         this.nonStriker = nonStriker;
         this.runs = runs;

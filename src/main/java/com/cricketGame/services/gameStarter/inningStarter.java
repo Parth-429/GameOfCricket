@@ -9,7 +9,9 @@ import com.cricketGame.models.innings.*;
 import com.cricketGame.models.player.Player;
 import com.cricketGame.models.stats.BatsmanStats;
 import com.cricketGame.models.stats.TeamStats;
+import com.cricketGame.repository.BowlingStatsRepository;
 import com.cricketGame.services.daoServices.BatsmanStatsService;
+import com.cricketGame.services.daoServices.BowlingStatsService;
 import com.cricketGame.services.generators.ObjectIDGenerator;
 import com.cricketGame.services.generators.RandomNumberGenerator;
 import com.cricketGame.services.generators.RunGenerator;
@@ -28,14 +30,7 @@ import static com.cricketGame.services.playerSelector.SelectBatsman.selectBatsma
 import static com.cricketGame.services.playerSelector.SelectBowler.selectBowler;
 
 @Data
-@Component
 public class inningStarter {
-    private static BatsmanStatsService batsmanStatsService;
-    @Autowired
-    public inningStarter(BatsmanStatsService batsmanStatsService){
-        this.batsmanStatsService  = batsmanStatsService;
-    }
-
     public static int playInning(Team battingTeam, Team bowlingTeam, Innings inning, Boolean isSecondInning) {
 
         boolean isAllOut = false;
@@ -99,8 +94,6 @@ public class inningStarter {
     private static void updateStatisticsAfterWicket(Innings scorecard, List<Player> battingTeamBatsman, PartnerShip partnerShipOfStrikerNonStriker,
                                                     Over over, int ball, Runs runOnThisBall) {
         getStriker(partnerShipOfStrikerNonStriker).getBatsmanStats().updateStats(runOnThisBall);
-        batsmanStatsService.saveBatsmanStats(
-                (BatsmanStats) partnerShipOfStrikerNonStriker.getStriker().getBatsmanStats());
         Wicket wicket = new Wicket(getStriker(partnerShipOfStrikerNonStriker).getId(), getWicketType());
         over.getBallsOfOver().get(ball - 1).setWicket(wicket);
         scorecard.getWickets().add(wicket);

@@ -6,6 +6,7 @@ import com.cricketGame.models.player.Player;
 import com.cricketGame.models.enums.Role;
 import com.cricketGame.services.generators.ObjectIDGenerator;
 import com.cricketGame.services.generators.RandomNumberGenerator;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -15,10 +16,10 @@ public class PlayerFactory{
     public static Player create(long teamID) {
         long playerID = ObjectIDGenerator.getID();
         String firstName = "Player_" + playerID + "_" +teamID;
-        String lastName = "";
+        String lastName = "X"+playerID;
         List<Role> roles = List.of(Role.values());
         Role role = roles.get(RandomNumberGenerator.getInstance().nextInt((roles.size())));
-        int age = 32;
+        int age = RandomNumberGenerator.getInstance().nextInt(40);
         int battingOrderNo = ++playerNo;
         if(Role.BOWLER.equals(role))
             battingOrderNo+=100;

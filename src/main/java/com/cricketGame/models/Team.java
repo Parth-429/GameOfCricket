@@ -4,20 +4,21 @@ import com.cricketGame.models.player.Player;
 import com.cricketGame.models.stats.BowlerStats;
 import com.cricketGame.models.stats.Stats;
 import com.cricketGame.models.stats.TeamStats;
+import com.cricketGame.services.generators.ObjectIDGenerator;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 @Data
 @EqualsAndHashCode(callSuper=false)
 @Entity
+@NoArgsConstructor
 public class Team extends Bean{
-    private final String name;
-
-    @OneToOne(targetEntity = TeamStats.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "team_stats_id", referencedColumnName = "id")
+    private String name;
+    @OneToOne(targetEntity = TeamStats.class, mappedBy = "team", cascade = CascadeType.ALL)
     private Stats teamStats;
     private int teamSize;
     @OneToMany(targetEntity = Player.class, cascade = CascadeType.ALL)
@@ -39,5 +40,7 @@ public class Team extends Bean{
         }
         this.players = players;
         this.teamStats = new TeamStats();
+        ((TeamStats)(this.teamStats)).setId(ObjectIDGenerator.getID());
+        ((TeamStats)(this.teamStats)).setTeam(this);
     }
 }

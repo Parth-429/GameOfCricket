@@ -7,14 +7,16 @@ import com.cricketGame.services.generators.ObjectIDGenerator;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 @Data
 @EqualsAndHashCode(callSuper=false)
 @Entity
+@NoArgsConstructor
 public class Wicket extends Bean {
-    private final long playerID;
+    private long playerID;
     @Enumerated(EnumType.STRING)
-    private final WicketType wicketType;
+    private WicketType wicketType;
     @OneToOne(targetEntity = Ball.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "wicket_ball_id", referencedColumnName = "id")
     private Ball onWhichBall;

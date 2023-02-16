@@ -18,12 +18,6 @@ public class BatsmanStatsService {
     public BatsmanStatsService(BatsmanStatsRepository batsmanStatsRepository) {
         this.batsmanStatsRepository = batsmanStatsRepository;
     }
-
-    @PostConstruct
-    public void init(){
-        System.out.println("Service Hashcode"+this.hashCode());
-        System.out.println("Repo Hashcode"+this.batsmanStatsRepository.hashCode());
-    }
     public void saveBatsmanStats(BatsmanStats batsmanStats){
         this.batsmanStatsRepository.save(batsmanStats);
     }

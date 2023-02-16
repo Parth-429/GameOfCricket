@@ -1,11 +1,14 @@
 package com.cricketGame.models.stats;
 
+import com.cricketGame.models.Bean;
 import com.cricketGame.models.innings.Ball;
 import com.cricketGame.models.enums.PlayerBattingStatus;
 import com.cricketGame.models.enums.RunStatistics;
 import com.cricketGame.models.enums.Runs;
+import com.cricketGame.models.player.Player;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.util.HashMap;
 import java.util.Objects;
@@ -14,10 +17,11 @@ import java.util.Optional;
 @Data
 @Entity
 @Table(name = "batsman_stats")
-public class BatsmanStats implements Stats{
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+@EqualsAndHashCode(callSuper=false)
+public class BatsmanStats extends Bean implements Stats {
+    @OneToOne(targetEntity = Player.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "player_id", referencedColumnName = "id")
+    private Player player;
     private int runsScoredByBatsman =0;
     private int ballPlayedByBatsman =0;
     private double strikeRate=0;

@@ -8,6 +8,7 @@ import com.cricketGame.services.generators.ObjectIDGenerator;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -16,13 +17,14 @@ import java.util.List;
 @Data
 @EqualsAndHashCode(callSuper=false)
 @Entity
+@NoArgsConstructor
 public class Innings extends Bean {
     @ManyToOne(targetEntity = Team.class, cascade = CascadeType.ALL)
     @JoinColumn(name="batting_team_id", referencedColumnName = "id")
-    private final Team battingTeam;
+    private Team battingTeam;
     @ManyToOne(targetEntity = Team.class, cascade = CascadeType.ALL)
     @JoinColumn(name="bowling_team_id", referencedColumnName = "id")
-    private final Team bowlingTeam;
+    private Team bowlingTeam;
     @OneToMany(targetEntity = Over.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "inning_id", referencedColumnName = "id")
     private List<Over> overs = new ArrayList<>();

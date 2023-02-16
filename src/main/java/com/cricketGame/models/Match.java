@@ -5,6 +5,7 @@ import com.cricketGame.models.stats.TeamStats;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.List;
 @EqualsAndHashCode(callSuper=false)
 @Entity
 @Table(name = "match_of_cricket")
+@NoArgsConstructor
 public class Match extends Bean{
     @OneToOne(targetEntity = Team.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "team1_id", referencedColumnName = "id")
@@ -20,7 +22,7 @@ public class Match extends Bean{
     @OneToOne(targetEntity = Team.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "team2_id", referencedColumnName = "id")
     private Team team2;
-    private final int allowedTeamSize;
+    private int allowedTeamSize;
 
     @OneToMany(targetEntity = Innings.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "match_id", referencedColumnName = "id")
