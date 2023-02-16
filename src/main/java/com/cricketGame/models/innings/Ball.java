@@ -16,7 +16,8 @@ import java.util.Optional;
 @Entity
 @Table(name = "ball")
 public class Ball extends Bean {
-    @Transient
+    @ManyToOne(targetEntity = Player.class, cascade = CascadeType.ALL)
+    @JoinColumn(name="bowler_id", referencedColumnName = "id")
     private final Player bowler;
     @Transient
     private PartnerShip batsmanPartnerShip;

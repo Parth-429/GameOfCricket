@@ -66,7 +66,7 @@ public class inningStarter {
             partnerShipOfStrikerNonStriker.swap();
             Constants.resetBallNo();
         }
-        ((TeamStats) battingTeam.getTeamStats()).setOvers( Constants.CURRENT_OVER_NO + ".0");
+        ((TeamStats) battingTeam.getTeamStats()).setOvers( Constants.OVERS_FOR_T20 + ".0");
         Constants.resetWicketNo();
         Constants.resetCurrentOverNo();
         return ((TeamStats) battingTeam.getTeamStats()).getTotalScore();
