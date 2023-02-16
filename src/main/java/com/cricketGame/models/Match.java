@@ -1,9 +1,8 @@
 package com.cricketGame.models;
 
 import com.cricketGame.models.innings.Innings;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-import jakarta.persistence.Transient;
+import com.cricketGame.models.stats.TeamStats;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -15,14 +14,19 @@ import java.util.List;
 @Entity
 @Table(name = "match_of_cricket")
 public class Match extends Bean{
-    @Transient
+    @OneToOne(targetEntity = Team.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "team1_id", referencedColumnName = "id")
     private Team team1;
-    @Transient
+    @OneToOne(targetEntity = Team.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "team2_id", referencedColumnName = "id")
     private Team team2;
     private final int allowedTeamSize;
-    @Transient
+
+    @OneToMany(targetEntity = Innings.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "match_id", referencedColumnName = "id")
     private List<Innings> innings;
-    @Transient
+    @OneToOne(targetEntity = Team.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "winner", referencedColumnName = "id")
     private Team winner;
     public Match(long matchId, Team team1, Team team2, int allowedTeamSize){
         super(matchId);

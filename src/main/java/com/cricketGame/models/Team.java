@@ -1,10 +1,10 @@
 package com.cricketGame.models;
 import com.cricketGame.constants.Constants;
 import com.cricketGame.models.player.Player;
+import com.cricketGame.models.stats.BowlerStats;
 import com.cricketGame.models.stats.Stats;
 import com.cricketGame.models.stats.TeamStats;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Transient;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -16,10 +16,12 @@ import java.util.List;
 public class Team extends Bean{
     private final String name;
 
-    @Transient
+    @OneToOne(targetEntity = TeamStats.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "team_stats_id", referencedColumnName = "id")
     private Stats teamStats;
     private int teamSize;
-    @Transient
+    @OneToMany(targetEntity = Player.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "team_id", referencedColumnName = "id")
     private List<Player> players;
     public Team(long teamId, String name, List<Player> players, int teamSize){
         super(teamId);
