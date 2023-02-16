@@ -4,10 +4,7 @@ import com.cricketGame.constants.Constants;
 import com.cricketGame.models.Bean;
 import com.cricketGame.models.enums.WicketType;
 import com.cricketGame.services.generators.ObjectIDGenerator;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.Transient;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -18,7 +15,8 @@ public class Wicket extends Bean {
     private final long playerID;
     @Enumerated(EnumType.STRING)
     private final WicketType wicketType;
-    @Transient
+    @OneToOne(targetEntity = Ball.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "wicket_ball_id", referencedColumnName = "id")
     private Ball onWhichBall;
     private int wicketNo;
     public Wicket(long playerId, WicketType wicketType){
