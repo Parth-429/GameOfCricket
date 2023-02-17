@@ -3,6 +3,8 @@ package com.cricketGame.repository;
 import com.cricketGame.models.Team;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface TeamRepository extends JpaRepository<Team, Long> {
+import java.util.Optional;
 
+public interface TeamRepository extends JpaRepository<Team, Long> {
+    Optional<Team> findById(Long id);
 }
