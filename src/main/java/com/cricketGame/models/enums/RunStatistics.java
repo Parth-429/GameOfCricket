@@ -1,6 +1,10 @@
 package com.cricketGame.models.enums;
 
+import com.cricketGame.models.player.Player;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
 public enum RunStatistics {
@@ -9,6 +13,7 @@ public enum RunStatistics {
     TWO_RUNS,
     THREE_RUNS,
     FOUR_RUNS,
+    FIVE_RUNS,
     SIX_RUNS;
     public static RunStatistics getRunStatisticConstant(Runs run){
         return switch (run){

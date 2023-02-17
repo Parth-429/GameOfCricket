@@ -11,6 +11,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -27,8 +28,14 @@ public class BatsmanStats extends Bean implements Stats {
     private double strikeRate=0;
     @Enumerated(EnumType.STRING)
     private PlayerBattingStatus battingStatus = PlayerBattingStatus.NOT_BAT_YET;
-    @Transient
-    private HashMap<RunStatistics, Integer> runStatisticsHashMap;
+
+    @ElementCollection
+    @CollectionTable(name = "run_statistics",
+                     joinColumns = { @JoinColumn(name = "id") })
+    @MapKeyEnumerated(EnumType.ORDINAL)
+    @MapKeyColumn(name = "run")
+    @Column(name = "frequency")
+    private Map<RunStatistics, Integer> runStatisticsHashMap;
     @Transient
     private Optional<Ball> wicketStats;
     public void updateStats(Runs runsTaken){
