@@ -30,8 +30,8 @@ public class Team extends Bean{
         try{
             if(teamSize!=players.size())
                 throw new IllegalArgumentException("Team Size and Number of Players in List Should be Same");
-            if(teamSize != Constants.ALLOWED_TEAM_SIZE)
-                throw new IllegalArgumentException("Team Size should be match to no. of players allowed in match");
+//            if(teamSize != Constants.ALLOWED_TEAM_SIZE)
+//                throw new IllegalArgumentException("Team Size should be match to no. of players allowed in match");
             this.teamSize = teamSize;
         }
         catch(Exception e){

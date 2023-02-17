@@ -4,6 +4,10 @@ import com.cricketGame.models.stats.BatsmanStats;
 import com.cricketGame.models.stats.BowlerStats;
 import com.cricketGame.models.stats.Stats;
 import com.cricketGame.services.generators.ObjectIDGenerator;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,7 +21,9 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "player")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+
 public abstract class Player extends Person{
+
     @Enumerated(EnumType.STRING)
     private Role role;
     @OneToOne(targetEntity = BowlerStats.class, mappedBy = "player", cascade = CascadeType.ALL)

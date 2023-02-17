@@ -7,20 +7,11 @@ import com.cricketGame.models.enums.Runs;
 import com.cricketGame.models.enums.WicketType;
 import com.cricketGame.models.innings.*;
 import com.cricketGame.models.player.Player;
-import com.cricketGame.models.stats.BatsmanStats;
 import com.cricketGame.models.stats.TeamStats;
-import com.cricketGame.repository.BowlingStatsRepository;
-import com.cricketGame.services.daoServices.BatsmanStatsService;
-import com.cricketGame.services.daoServices.BowlingStatsService;
 import com.cricketGame.services.generators.ObjectIDGenerator;
 import com.cricketGame.services.generators.RandomNumberGenerator;
 import com.cricketGame.services.generators.RunGenerator;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +21,7 @@ import static com.cricketGame.services.playerSelector.SelectBatsman.selectBatsma
 import static com.cricketGame.services.playerSelector.SelectBowler.selectBowler;
 
 @Data
-public class inningStarter {
+public class InningStarter {
     public static int playInning(Team battingTeam, Team bowlingTeam, Innings inning, Boolean isSecondInning) {
 
         boolean isAllOut = false;
