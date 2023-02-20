@@ -34,7 +34,7 @@ public class InningStarter {
         }
 
         PartnerShip partnerShipOfStrikerNonStriker = new PartnerShip(selectBatsman(battingTeamBatsman),
-                selectBatsman(battingTeamBatsman),0);
+                selectBatsman(battingTeamBatsman));
         int target = Integer.MAX_VALUE;
         if (isSecondInning) {
             target = ((TeamStats) (bowlingTeam.getTeamStats())).getTotalScore();
@@ -49,6 +49,8 @@ public class InningStarter {
                 addBalltoOver(partnerShipOfStrikerNonStriker, bowler, over, runOnThisBall);
                 if (runOnThisBall.equals(Runs.WICKET)) {
                     updateStatisticsAfterWicket(inning, battingTeamBatsman, partnerShipOfStrikerNonStriker, over, ball, runOnThisBall);
+                    partnerShipOfStrikerNonStriker = new PartnerShip(selectBatsman(battingTeamBatsman),
+                            partnerShipOfStrikerNonStriker.getNonStriker());
                     isAllOut = checkIsAllOut(false, partnerShipOfStrikerNonStriker);
                 } else {
                     updateStatisticsIfNotWicket(partnerShipOfStrikerNonStriker, runOnThisBall);
@@ -89,7 +91,6 @@ public class InningStarter {
         Wicket wicket = new Wicket(getStriker(partnerShipOfStrikerNonStriker).getId(), getWicketType());
         over.getBallsOfOver().get(ball - 1).setWicket(wicket);
         scorecard.getWickets().add(wicket);
-        partnerShipOfStrikerNonStriker.setStriker(selectBatsman(battingTeamBatsman));
     }
 
     private static boolean checkIsAllOut(boolean isAllOut, PartnerShip partnerShipOfStrikerNonStriker) {

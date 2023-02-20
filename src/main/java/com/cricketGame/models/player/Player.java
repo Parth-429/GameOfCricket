@@ -21,10 +21,8 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "player")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-
 public abstract class Player extends Person{
 
-    @Enumerated(EnumType.STRING)
     private Role role;
     @OneToOne(targetEntity = BowlerStats.class, mappedBy = "player", cascade = CascadeType.ALL)
     private Stats bowlerStats;

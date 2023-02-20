@@ -21,14 +21,12 @@ public class PartnerShip extends Bean{
     @ManyToOne(targetEntity = Player.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "batsman2", referencedColumnName = "id")
     private Player nonStriker;
-    private int runs;
-    public PartnerShip(Player striker, Player nonStriker, int runs) {
+    private int runs = 0;
+    public PartnerShip(Player striker, Player nonStriker) {
         super(ObjectIDGenerator.getID());
         this.striker = striker;
         this.nonStriker = nonStriker;
-        this.runs = runs;
     }
-
     public void swap(){
         Player temp = this.striker;
         this.striker = this.nonStriker;

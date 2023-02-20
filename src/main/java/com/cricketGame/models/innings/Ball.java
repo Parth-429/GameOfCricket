@@ -21,7 +21,8 @@ public class Ball extends Bean {
     @ManyToOne(targetEntity = Player.class, cascade = CascadeType.ALL)
     @JoinColumn(name="bowler_id", referencedColumnName = "id")
     private Player bowler;
-    @Transient
+    @ManyToOne(targetEntity = PartnerShip.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "partnership_id", referencedColumnName = "id")
     private PartnerShip batsmanPartnerShip;
     @Enumerated(EnumType.STRING)
     private Runs runMade;
