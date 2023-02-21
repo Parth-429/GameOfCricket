@@ -1,5 +1,7 @@
 package com.cricketGame.models;
 
+import com.cricketGame.constants.Constants;
+import com.cricketGame.models.enums.MatchFormat;
 import com.cricketGame.models.innings.Innings;
 import com.cricketGame.models.stats.TeamStats;
 import jakarta.persistence.*;
@@ -22,22 +24,27 @@ public class Match extends Bean{
     @OneToOne(targetEntity = Team.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "team2_id", referencedColumnName = "id")
     private Team team2;
-    private int allowedTeamSize;
-
-    private String format;
-
+    @Enumerated(EnumType.STRING)
+    private MatchFormat format;
     @OneToMany(targetEntity = Innings.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "match_id", referencedColumnName = "id")
     private List<Innings> innings;
     @OneToOne(targetEntity = Team.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "winner", referencedColumnName = "id")
     private Team winner;
-    public Match(long matchId, Team team1, Team team2, int allowedTeamSize){
+    public Match(long matchId, Team team1, Team team2, int allowedTeamSize, String format){
         super(matchId);
         this.team1 = team1;
         this.team2 = team2;
-        this.allowedTeamSize = allowedTeamSize;
+        Constants.ALLOWED_TEAM_SIZE = allowedTeamSize;
         this.innings = new ArrayList<>();
+        if(Constants.ODI_FORMAT.equals(format))
+            this.format = MatchFormat.ODI;
+        else if(Constants.T20_FORMAT.equals(format))
+            this.format = MatchFormat.T20;
+        else if(Constants.TEST_FORMAT.equals(format))
+           this.format = MatchFormat.TEST;
+        Constants.MAX_NO_OF_OVERS = this.format.getNoOfOvers();
     }
     public void swap(){
         Team temp = this.team1;

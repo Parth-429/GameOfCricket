@@ -13,4 +13,5 @@ public class MatchDTO {
     private Long team1Id;
     private Long team2Id;
     private int allowedTeamSize;
+    private String format;
 }

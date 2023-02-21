@@ -35,7 +35,7 @@ public class Innings extends Bean {
         super(ObjectIDGenerator.getID());
         this.battingTeam = battingTeam;
         this.bowlingTeam = bowlingTeam;
-        for(int i = 0; i<Constants.OVERS_FOR_T20; i++)
+        for(int i = 0; i<Constants.MAX_NO_OF_OVERS; i++)
             this.overs.add(new Over());
     }
 }

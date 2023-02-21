@@ -19,13 +19,13 @@ public class MatchMapper {
         long matchID = ObjectIDGenerator.getID();
         Team team1 = AllService.teamService.findTeamById(team1Id);
         Team team2 = AllService.teamService.findTeamById(team2Id);
-        return new Match(matchID,team1,team2, allowedTeamSize);
+        String format = matchDTO.getFormat();
+        return new Match(matchID,team1,team2, allowedTeamSize, format);
     }
     public MatchDTO toDto(Match match){
         MatchDTO matchDTO = new MatchDTO();
         matchDTO.setTeam1Id(match.getTeam1().getId());
         matchDTO.setTeam2Id(match.getTeam2().getId());
-        matchDTO.setAllowedTeamSize(match.getAllowedTeamSize());
         return matchDTO;
     }
 }
