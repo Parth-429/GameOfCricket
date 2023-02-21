@@ -17,8 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import static com.cricketGame.services.playerSelector.SelectBatsman.selectBatsman;
-import static com.cricketGame.services.playerSelector.SelectBowler.selectBowler;
+import static com.cricketGame.services.playerSelector.BatsmanSelector.selectBatsman;
+import static com.cricketGame.services.playerSelector.BowlerSelector.selectBowler;
 
 @Data
 public class InningStarter {

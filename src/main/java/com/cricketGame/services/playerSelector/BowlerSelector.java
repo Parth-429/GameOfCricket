@@ -6,7 +6,7 @@ import com.cricketGame.services.generators.RandomNumberGenerator;
 import java.util.List;
 import java.util.Random;
 
-public class SelectBowler {
+public class BowlerSelector {
     public static Player selectBowler(Player prevBowler, List<Player> bowlers){
         Random rm = RandomNumberGenerator.getInstance();
         int totalBowlers = bowlers.size();

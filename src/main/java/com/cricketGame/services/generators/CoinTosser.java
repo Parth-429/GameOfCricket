@@ -4,7 +4,7 @@ import com.cricketGame.models.enums.Coin;
 
 import java.util.Random;
 
-public class TossCoin {
+public class CoinTosser {
     public static Coin tossCoin(){
         Random rm = RandomNumberGenerator.getInstance();
         if(rm.nextBoolean())

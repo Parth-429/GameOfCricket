@@ -5,8 +5,7 @@ import com.cricketGame.models.enums.Coin;
 import com.cricketGame.models.innings.Innings;
 import com.cricketGame.models.stats.TeamStats;
 import com.cricketGame.services.daoServices.AllService;
-import com.cricketGame.services.generators.ObjectIDGenerator;
-import com.cricketGame.services.generators.TossCoin;
+import com.cricketGame.services.generators.CoinTosser;
 import com.cricketGame.services.factory.MatchFactory;
 import com.cricketGame.view.ShowScoreCard;
 import lombok.Data;
@@ -19,7 +18,7 @@ public class MatchStarter {
 
     public static void startGame(Long id) {
         Match match = MatchFactory.create(id);
-        if (TossCoin.tossCoin().equals(Coin.HEAD)) {
+        if (CoinTosser.tossCoin().equals(Coin.HEAD)) {
             match.swap();
         }
         System.out.println(match.getTeam1().getName() + " won the toss and decided to Bat First:");

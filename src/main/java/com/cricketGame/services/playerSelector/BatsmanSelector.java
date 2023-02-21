@@ -4,7 +4,7 @@ import com.cricketGame.models.player.Player;
 
 import java.util.List;
 
-public class SelectBatsman {
+public class BatsmanSelector {
     public static Player selectBatsman(List<Player> players){
         if(players.isEmpty())
             return null;
