@@ -6,12 +6,12 @@ import com.cricketGame.models.innings.Innings;
 import com.cricketGame.models.player.Player;
 import com.cricketGame.models.stats.BatsmanStats;
 import com.cricketGame.models.stats.BowlerStats;
-import com.cricketGame.view.showStats.ShowBallingStats;
-import com.cricketGame.view.showStats.ShowBattingStats;
-import com.cricketGame.view.showStats.ShowTeamBattingInningStatus;
+import com.cricketGame.view.showStats.BallingStats;
+import com.cricketGame.view.showStats.BattingStats;
+import com.cricketGame.view.showStats.TeamBattingInningStatus;
 
 
-public class ShowInningsDetails {
+public class InningsDetails {
     public static String showInningsDetails(Innings innings){
         String result = "";
         Team battingTeam = innings.getBattingTeam();
@@ -22,15 +22,15 @@ public class ShowInningsDetails {
             if (((BatsmanStats)(player.getBatsmanStats())).getBattingStatus().equals(PlayerBattingStatus.NOT_BAT_YET)) {
                 continue;
             }
-            result += (ShowBattingStats.showStats(player)) + "\n";
+            result += (BattingStats.showStats(player)) + "\n";
         }
-        result += (ShowTeamBattingInningStatus.showStats(battingTeam)) + "\n";
+        result += (TeamBattingInningStatus.showStats(battingTeam)) + "\n";
         result += ("Bowling Summary : "+bowlingTeam.getName()) + "\n";
         result += ("\nPlayer        \t\tOvers\tRuns\tWickets") + "\n";
         for(Player player: bowlingTeam.getPlayers()) {
             if (player.getRole().equals("Batsman") || ((BowlerStats)player.getBowlerStats()).getNoOfBallsThrown()==0)
                 continue;
-            result += (ShowBallingStats.showStats(player)) + "\n";
+            result += (BallingStats.showStats(player)) + "\n";
         }
         return result;
     }

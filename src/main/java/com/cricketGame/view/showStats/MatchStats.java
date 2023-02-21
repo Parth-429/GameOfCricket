@@ -3,7 +3,7 @@ package com.cricketGame.view.showStats;
 import com.cricketGame.models.Match;
 import com.cricketGame.models.stats.TeamStats;
 
-public class ShowMatchStats{
+public class MatchStats {
 
     public static String showStats(Match match) {
         String result = "\nResult of Match:";

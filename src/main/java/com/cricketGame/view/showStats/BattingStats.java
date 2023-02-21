@@ -5,7 +5,7 @@ import com.cricketGame.models.enums.PlayerBattingStatus;
 import com.cricketGame.models.enums.RunStatistics;
 import com.cricketGame.models.stats.BatsmanStats;
 
-public class ShowBattingStats{
+public class BattingStats {
     public static String showStats(Player batsman) {
         String nameOfBatsman = String.format("%-15s", batsman.getFirstName() + " " + batsman.getLastName());
         BatsmanStats batsmanStats = (BatsmanStats) batsman.getBatsmanStats();

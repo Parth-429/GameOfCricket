@@ -3,7 +3,7 @@ package com.cricketGame.view.showStats;
 import com.cricketGame.models.player.Player;
 import com.cricketGame.models.stats.BowlerStats;
 
-public class ShowBallingStats{
+public class BallingStats {
     public static String showStats(Player bowler) {
         String stats = String.format("%-15s", bowler.getFirstName() + " " + bowler.getLastName());
         BowlerStats bowlerstats = (BowlerStats) bowler.getBowlerStats();
