@@ -22,14 +22,13 @@ import lombok.NoArgsConstructor;
 @Table(name = "player")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class Player extends Person{
-
+    @Enumerated(EnumType.STRING)
     private Role role;
     @OneToOne(targetEntity = BowlerStats.class, mappedBy = "player", cascade = CascadeType.ALL)
     private Stats bowlerStats;
     @OneToOne(targetEntity = BatsmanStats.class, mappedBy = "player", cascade = CascadeType.ALL)
     private Stats batsmanStats;
     private int batsmanOrderNo;
-
     public Player(long playerID, String firstName, String lastName,  int age, int orderNo, Role role) {
         super(firstName,lastName,age);
         this.setId(playerID);

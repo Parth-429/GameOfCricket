@@ -24,6 +24,8 @@ public class Match extends Bean{
     private Team team2;
     private int allowedTeamSize;
 
+    private String format;
+
     @OneToMany(targetEntity = Innings.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "match_id", referencedColumnName = "id")
     private List<Innings> innings;

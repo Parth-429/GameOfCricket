@@ -12,25 +12,26 @@ import com.cricketGame.view.showStats.ShowTeamBattingInningStatus;
 
 
 public class ShowInningsDetails {
-    public static void showInningsDetails(Innings innings){
+    public static String showInningsDetails(Innings innings){
+        String result = "";
         Team battingTeam = innings.getBattingTeam();
         Team bowlingTeam = innings.getBowlingTeam();
-        System.out.println("Batting Summary : "+ battingTeam.getName());
-        System.out.println("\nPlayer         \t\tRuns\tBalls\tSix\tFour");
+        result += ("Batting Summary : "+ battingTeam.getName()) + "\n";
+        result += ("\nPlayer         \t\tRuns\tBalls\tSix\tFour") + "\n";
         for(Player player: battingTeam.getPlayers()) {
             if (((BatsmanStats)(player.getBatsmanStats())).getBattingStatus().equals(PlayerBattingStatus.NOT_BAT_YET)) {
                 continue;
             }
-            System.out.println(ShowBattingStats.showStats(player));
+            result += (ShowBattingStats.showStats(player)) + "\n";
         }
-        System.out.println(ShowTeamBattingInningStatus.showStats(battingTeam));
-        System.out.println();
-        System.out.println("Bowling Summary : "+bowlingTeam.getName());
-        System.out.println("\nPlayer        \t\tOvers\tRuns\tWickets");
+        result += (ShowTeamBattingInningStatus.showStats(battingTeam)) + "\n";
+        result += ("Bowling Summary : "+bowlingTeam.getName()) + "\n";
+        result += ("\nPlayer        \t\tOvers\tRuns\tWickets") + "\n";
         for(Player player: bowlingTeam.getPlayers()) {
             if (player.getRole().equals("Batsman") || ((BowlerStats)player.getBowlerStats()).getNoOfBallsThrown()==0)
                 continue;
-            System.out.println(ShowBallingStats.showStats(player));
+            result += (ShowBallingStats.showStats(player)) + "\n";
         }
+        return result;
     }
 }

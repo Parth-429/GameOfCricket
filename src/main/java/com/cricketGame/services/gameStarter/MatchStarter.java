@@ -16,29 +16,31 @@ import static com.cricketGame.services.gameStarter.InningStarter.playInning;
 
 public class MatchStarter {
 
-    public static void startGame(Long id) {
+    public static String startGame(Long id) {
         Match match = MatchFactory.create(id);
         if (CoinTosser.tossCoin().equals(Coin.HEAD)) {
             match.swap();
         }
-        System.out.println(match.getTeam1().getName() + " won the toss and decided to Bat First:");
-        System.out.println("\nInning one is started...");
+        String result = "";
+        result += match.getTeam1().getName() + " won the toss and decided to Bat First:" + "\n";
+        result += ("\nInning one is started...")+ "\n";
 
         Innings firstInning = match.addNewInnings(new Innings(match.getTeam1(), match.getTeam2()));
         int firstInningScore = playInning(firstInning.getBattingTeam(), firstInning.getBowlingTeam(),
                 firstInning, false);
-        System.out.println(firstInning.getBattingTeam().getName() + " has Scored " + firstInningScore + " by losing " +
-                           ((TeamStats) firstInning.getBattingTeam().getTeamStats()).getTotalWickets() + " wickets.");
-        System.out.println("\nInning two is started and Target is " + (firstInningScore + 1) + " ...");
+        result += (firstInning.getBattingTeam().getName() + " has Scored " + firstInningScore + " by losing " +
+                           ((TeamStats) firstInning.getBattingTeam().getTeamStats()).getTotalWickets() + " wickets.") + "\n";
+        result += ("\nInning two is started and Target is " + (firstInningScore + 1) + " ...") + "\n";
 
         Innings secondInning = match.addNewInnings(new Innings(match.getTeam2(), match.getTeam1()));
         int secondInningScore = playInning(secondInning.getBattingTeam(), secondInning.getBowlingTeam(),
                 secondInning, true);
-        System.out.println(
+        result += (
                 secondInning.getBattingTeam().getName() + " has Scored " + secondInningScore + " by losing " +
-                ((TeamStats) secondInning.getBattingTeam().getTeamStats()).getTotalWickets() + " wickets.");
-        ShowScoreCard.showScoreCard(match);
+                ((TeamStats) secondInning.getBattingTeam().getTeamStats()).getTotalWickets() + " wickets.") + "\n";
+        result += ShowScoreCard.showScoreCard(match);
         AllService.matchService.updateMatch(match);
+        return result;
     }
 
 }

@@ -16,7 +16,6 @@ import java.util.Optional;
 
 @Service
 public class PlayerService {
-
     @Autowired
     private PlayerRepository playerRepository;
     @Autowired
@@ -28,6 +27,14 @@ public class PlayerService {
     }
 
     public Player findPlayerById(Long id){
-        return this.playerRepository.findById(id).get();
+        Optional<Player> checkPlayer = this.playerRepository.findById(id);
+        try {
+            if (!checkPlayer.isPresent())
+                throw new IllegalArgumentException("Error : Player with given id is not exist");
+        }catch(Exception e){
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
+        return checkPlayer.get();
     }
 }
