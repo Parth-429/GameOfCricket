@@ -39,6 +39,7 @@ public class MatchStarter {
                 secondInning.getBattingTeam().getName() + " has Scored " + secondInningScore + " by losing " +
                 ((TeamStats) secondInning.getBattingTeam().getTeamStats()).getTotalWickets() + " wickets.") + "\n";
         result += ShowScoreCard.showScoreCard(match);
+        System.out.println(result);
         AllService.matchService.updateMatch(match);
         return result;
     }

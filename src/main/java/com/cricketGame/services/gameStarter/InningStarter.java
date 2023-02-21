@@ -64,6 +64,7 @@ public class InningStarter {
                             ball % Constants.MAX_BALLS_IN_ONE_OVER);
                     Constants.resetWicketNo();
                     Constants.resetCurrentOverNo();
+                    Constants.resetBallNo();
                     return ((TeamStats) battingTeam.getTeamStats()).getTotalScore();
                 }
             }
