@@ -20,12 +20,10 @@ public class PlayerService {
     private PlayerRepository playerRepository;
     @Autowired
     private PlayerMapper playerMapper;
-
     public Player savePlayer(PlayerDTO playerDTO){
         Player player = playerMapper.toPlayer(playerDTO);
         return this.playerRepository.save(player);
     }
-
     public Player findPlayerById(Long id){
         Optional<Player> checkPlayer = this.playerRepository.findById(id);
         try {

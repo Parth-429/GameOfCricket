@@ -7,13 +7,10 @@ import java.util.*;
 @Getter
 public enum Runs {
     ZERO(0), ONE(1), TWO(2), THREE(3), FOUR(4), SIX(6), WICKET(-1);
-
     private final int run;
-
     Runs(int run) {
         this.run = run;
     }
-
     private static final Map<Runs, Integer> runProbabilityMapForBatsman = new HashMap<>(
             Map.ofEntries(Map.entry(ZERO, 20), Map.entry(ONE, 25), Map.entry(TWO, 15), Map.entry(THREE, 2),
                     Map.entry(FOUR, 10), Map.entry(SIX, 6), Map.entry(WICKET, 4)));

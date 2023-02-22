@@ -3,7 +3,6 @@ package com.cricketGame.models;
 import com.cricketGame.constants.Constants;
 import com.cricketGame.models.enums.MatchFormat;
 import com.cricketGame.models.innings.Innings;
-import com.cricketGame.models.stats.TeamStats;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -38,14 +37,10 @@ public class Match extends Bean{
         this.team2 = team2;
         Constants.ALLOWED_TEAM_SIZE = allowedTeamSize;
         this.innings = new ArrayList<>();
-        if(Constants.ODI_FORMAT.equals(format))
-            this.format = MatchFormat.ODI;
-        else if(Constants.T20_FORMAT.equals(format))
-            this.format = MatchFormat.T20;
-        else if(Constants.TEST_FORMAT.equals(format))
-           this.format = MatchFormat.TEST;
+        this.format = MatchFormat.getMatchFormat(format);
         Constants.MAX_NO_OF_OVERS = this.format.getNoOfOvers();
     }
+
     public void swap(){
         Team temp = this.team1;
         this.team1 = this.team2;

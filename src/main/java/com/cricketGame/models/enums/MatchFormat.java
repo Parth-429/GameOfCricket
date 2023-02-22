@@ -11,4 +11,14 @@ public enum MatchFormat {
     MatchFormat(int oversForT20) {
         this.noOfOvers = oversForT20;
     }
+
+    public static MatchFormat getMatchFormat(String format) {
+        if(Constants.ODI_FORMAT.equals(format))
+            return MatchFormat.ODI;
+        else if(Constants.T20_FORMAT.equals(format))
+            return  MatchFormat.T20;
+        else if(Constants.TEST_FORMAT.equals(format))
+            return  MatchFormat.TEST;
+        return MatchFormat.T20;
+    }
 }

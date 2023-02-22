@@ -11,27 +11,28 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.Objects;
 
 @Data
 @EqualsAndHashCode(callSuper=false)
 @Entity
 @NoArgsConstructor
 public class Team extends Bean{
-    private String name;
+    @ManyToOne(targetEntity = _Team.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "team_id", referencedColumnName = "id")
+    private _Team _team;
     @OneToOne(targetEntity = TeamStats.class, mappedBy = "team", cascade = CascadeType.ALL)
     private Stats teamStats;
     private int teamSize;
     @OneToMany(targetEntity = Player.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "team_id", referencedColumnName = "id")
     private List<Player> players;
-    public Team(long teamId, String name, List<Player> players, int teamSize){
+    public Team(Long teamId, _Team _team, List<Player> players, int teamSize){
         super(teamId);
-        this.name = name;
+        this._team = _team;
         try{
             if(teamSize!=players.size())
                 throw new IllegalArgumentException("Team Size and Number of Players in List Should be Same");
-//            if(teamSize != Constants.ALLOWED_TEAM_SIZE)
-//                throw new IllegalArgumentException("Team Size should be match to no. of players allowed in match");
             this.teamSize = teamSize;
         }
         catch(Exception e){
@@ -39,8 +40,17 @@ public class Team extends Bean{
             e.printStackTrace();
         }
         this.players = players;
-        this.teamStats = new TeamStats();
-        ((TeamStats)(this.teamStats)).setId(ObjectIDGenerator.getID());
-        ((TeamStats)(this.teamStats)).setTeam(this);
+    }
+    public Stats getTeamStats() {
+        if(Objects.isNull(this.teamStats)) {
+            this.teamStats = new TeamStats();
+            ((TeamStats) (this.teamStats)).setId(ObjectIDGenerator.getID());
+            ((TeamStats) (this.teamStats)).setTeam(this);
+        }
+        return teamStats;
+    }
+
+    public String getName() {
+        return this._team.getName();
     }
 }

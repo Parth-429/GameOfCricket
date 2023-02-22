@@ -3,8 +3,10 @@ package com.cricketGame.controller;
 import com.cricketGame.dto.TeamDTO;
 import com.cricketGame.dtoMappers.TeamMapper;
 import com.cricketGame.models.Team;
+import com.cricketGame.models._Team;
 import com.cricketGame.repository.TeamRepository;
 import com.cricketGame.services.daoServices.TeamService;
+import com.cricketGame.services.daoServices._TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,8 +19,15 @@ public class TeamController {
     @Autowired
     private TeamService teamService;
     @Autowired
+    private _TeamService _teamService;
+    @Autowired
     private TeamMapper teamMapper;
+
     @PostMapping
+    public _Team addTeam(@RequestBody String name){
+        return this._teamService.addTeam(name);
+    }
+    @PostMapping("/forMatch")
     public TeamDTO addTeam(@RequestBody TeamDTO teamDTO){
         Team team = teamService.saveTeam(teamDTO);
         return teamMapper.toDto(team);

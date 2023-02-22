@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 public class Batsman extends Player {
-    public Batsman(long playerID, String firstName, String lastName, int age, int orderNo){
-        super(playerID, firstName, lastName, age, orderNo, Role.BATSMAN);
+    public Batsman(Long playerID, Person person, int orderNo){
+        super(playerID, person, orderNo, Role.BATSMAN);
     }
 }

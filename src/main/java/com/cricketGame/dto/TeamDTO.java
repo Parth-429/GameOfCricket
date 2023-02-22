@@ -10,7 +10,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TeamDTO {
-    private String name;
+    private Long teamId;
     private int teamSize;
-    private List<Long> playerIds;
+    private List<PlayerDTO> players;
 }

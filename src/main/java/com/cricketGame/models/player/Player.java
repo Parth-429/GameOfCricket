@@ -1,4 +1,5 @@
 package com.cricketGame.models.player;
+import com.cricketGame.models.Bean;
 import com.cricketGame.models.enums.Role;
 import com.cricketGame.models.stats.BatsmanStats;
 import com.cricketGame.models.stats.BowlerStats;
@@ -21,7 +22,10 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "player")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public abstract class Player extends Person{
+public abstract class Player extends Bean {
+    @ManyToOne(targetEntity = Person.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "person_id", referencedColumnName = "id")
+    private Person person;
     @Enumerated(EnumType.STRING)
     private Role role;
     @OneToOne(targetEntity = BowlerStats.class, mappedBy = "player", cascade = CascadeType.ALL)
@@ -29,9 +33,9 @@ public abstract class Player extends Person{
     @OneToOne(targetEntity = BatsmanStats.class, mappedBy = "player", cascade = CascadeType.ALL)
     private Stats batsmanStats;
     private int batsmanOrderNo;
-    public Player(long playerID, String firstName, String lastName,  int age, int orderNo, Role role) {
-        super(firstName,lastName,age);
-        this.setId(playerID);
+    public Player(long playerID, Person person, int orderNo, Role role) {
+        super(playerID);
+        this.person = person;
         this.batsmanOrderNo = orderNo;
         this.role = role;
     }
@@ -52,4 +56,11 @@ public abstract class Player extends Person{
         return this.batsmanStats;
     }
 
+    public String getFirstName() {
+        return this.person.getFirstName();
+    }
+
+    public String getLastName() {
+        return this.person.getLastName();
+    }
 }

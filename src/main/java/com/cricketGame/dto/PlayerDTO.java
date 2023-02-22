@@ -9,9 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PlayerDTO {
-    String firstName;
-    String lastName;
-    String role;
-    int age;
-    int battingOrderNo;
+    private Long personId;
+    private String role;
+    private int battingOrderNo;
 }
