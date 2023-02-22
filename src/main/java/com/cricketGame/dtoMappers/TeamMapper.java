@@ -1,11 +1,9 @@
 package com.cricketGame.dtoMappers;
 
-import com.cricketGame.dto.PersonDTO;
 import com.cricketGame.dto.PlayerDTO;
 import com.cricketGame.dto.TeamDTO;
+import com.cricketGame.models.TeamHistory;
 import com.cricketGame.models.Team;
-import com.cricketGame.models._Team;
-import com.cricketGame.models.player.Person;
 import com.cricketGame.models.player.Player;
 import com.cricketGame.services.daoServices.AllService;
 import com.cricketGame.services.generators.ObjectIDGenerator;
@@ -19,14 +17,14 @@ import java.util.List;
 @Component
 public class TeamMapper {
 
-    public TeamDTO toDto(Team team){
+    public TeamDTO toDto(TeamHistory team){
         TeamDTO teamDTO = new TeamDTO();
         teamDTO.setTeamSize(team.getTeamSize());
         return teamDTO;
     }
 
-    public Team toTeam(TeamDTO teamDTO){
-        _Team _team = AllService._teamService.findTeamById(teamDTO.getTeamId());
+    public TeamHistory toTeam(TeamDTO teamDTO){
+        Team _team = AllService._teamService.findTeamById(teamDTO.getTeamId());
         int teamSize = teamDTO.getTeamSize();
         System.out.println(teamSize);
         Long teamID = ObjectIDGenerator.getID();
@@ -35,6 +33,6 @@ public class TeamMapper {
             players.add(AllService.playerService.savePlayer(player));
         }
         Collections.sort(players, Comparator.comparingInt(Player::getBatsmanOrderNo));
-        return new Team(teamID, _team, players, teamSize);
+        return new TeamHistory(teamID, _team, players, teamSize);
     }
 }

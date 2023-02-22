@@ -14,8 +14,8 @@ import com.cricketGame.view.showStats.TeamBattingInningStatus;
 public class InningsDetails {
     public static String showInningsDetails(Innings innings){
         String result = "";
-        Team battingTeam = innings.getBattingTeam();
-        Team bowlingTeam = innings.getBowlingTeam();
+        TeamHistory battingTeam = innings.getBattingTeam();
+        TeamHistory bowlingTeam = innings.getBowlingTeam();
         result += ("Batting Summary : "+ battingTeam.getName()) + "\n";
         result += ("\nPlayer         \t\tRuns\tBalls\tSix\tFour") + "\n";
         for(Player player: battingTeam.getPlayers()) {

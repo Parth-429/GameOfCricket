@@ -22,7 +22,7 @@ import static com.cricketGame.services.playerSelector.BowlerSelector.selectBowle
 
 @Data
 public class InningStarter {
-    public static int playInning(Team battingTeam, Team bowlingTeam, Innings inning, Boolean isSecondInning) {
+    public static int playInning(TeamHistory battingTeam, TeamHistory bowlingTeam, Innings inning, Boolean isSecondInning) {
 
         boolean isAllOut = false;
         List<Player> battingTeamBatsman = new ArrayList<>(battingTeam.getPlayers());
