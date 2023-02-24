@@ -1,11 +1,7 @@
-package com.cricketGame.models.player;
+package com.cricketGame.models.beans.player;
 
-import com.cricketGame.models.Bean;
+import com.cricketGame.models.beans.Bean;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
-import jakarta.persistence.MappedSuperclass;
-import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

@@ -1,5 +1,7 @@
 package com.cricketGame.services.factory;
 
+//now it will be done by API call, through constructor
+//Kept for debugging
 public class TeamFactory{
 //    public static Team create(long match_ID) {
 ////        long teamID = ObjectIDGenerator.getID();

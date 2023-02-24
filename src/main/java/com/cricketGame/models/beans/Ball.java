@@ -1,9 +1,8 @@
-package com.cricketGame.models.innings;
+package com.cricketGame.models.beans;
 
 import com.cricketGame.constants.Constants;
-import com.cricketGame.models.Bean;
 import com.cricketGame.models.enums.Runs;
-import com.cricketGame.models.player.Player;
+import com.cricketGame.models.beans.player.Player;
 import com.cricketGame.models.stats.BatsmanStats;
 import jakarta.persistence.*;
 import lombok.Data;

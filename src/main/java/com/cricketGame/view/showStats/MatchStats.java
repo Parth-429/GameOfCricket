@@ -1,6 +1,6 @@
 package com.cricketGame.view.showStats;
 
-import com.cricketGame.models.Match;
+import com.cricketGame.models.beans.Match;
 import com.cricketGame.models.stats.TeamStats;
 
 public class MatchStats {

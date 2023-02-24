@@ -1,13 +1,6 @@
 package com.cricketGame.constants;
 
 public class Constants {
-
-    public static String BATTING_ROLE = "Batsman";
-    public static String BOWLING_ROLE = "Bowler";
-
-    public static String T20_FORMAT = "T20";
-    public static String ODI_FORMAT = "ODI";
-    public static String TEST_FORMAT = "TEST";
     public static int OVERS_FOR_T20 = 20;
     public static int OVERS_FOR_ODI = 50;
     public static int MAX_NO_OF_OVERS = 20;

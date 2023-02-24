@@ -1,7 +1,6 @@
 package com.cricketGame.models.enums;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.Getter;
 
 @Getter
@@ -11,6 +10,6 @@ public enum WicketType {
     BOWLED("bowled"),
     RUN_OUT("runout"),
     LBW("lbw");
-    private final String wicketType;
+    private final String displayValue;
 
 }

@@ -1,5 +1,6 @@
-package com.cricketGame.models;
-import com.cricketGame.models.player.Player;
+package com.cricketGame.models.beans.team;
+import com.cricketGame.models.beans.Bean;
+import com.cricketGame.models.beans.player.Player;
 import com.cricketGame.models.stats.Stats;
 import com.cricketGame.models.stats.TeamStats;
 import com.cricketGame.services.generators.ObjectIDGenerator;
@@ -15,7 +16,7 @@ import java.util.Objects;
 @EqualsAndHashCode(callSuper=false)
 @Entity
 @NoArgsConstructor
-public class TeamHistory extends Bean{
+public class TeamHistory extends Bean {
     @ManyToOne(targetEntity = Team.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "team_id", referencedColumnName = "id")
     private Team _team;

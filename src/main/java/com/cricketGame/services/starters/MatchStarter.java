@@ -1,8 +1,8 @@
-package com.cricketGame.services.gameStarter;
+package com.cricketGame.services.starters;
 
-import com.cricketGame.models.*;
+import com.cricketGame.models.beans.Match;
 import com.cricketGame.models.enums.Coin;
-import com.cricketGame.models.innings.Innings;
+import com.cricketGame.models.beans.Innings;
 import com.cricketGame.models.stats.TeamStats;
 import com.cricketGame.services.daoServices.AllService;
 import com.cricketGame.services.generators.CoinTosser;
@@ -10,7 +10,7 @@ import com.cricketGame.services.factory.MatchFactory;
 import com.cricketGame.view.ScoreCard;
 import lombok.Data;
 
-import static com.cricketGame.services.gameStarter.InningStarter.playInning;
+import static com.cricketGame.services.starters.InningStarter.playInning;
 
 @Data
 

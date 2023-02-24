@@ -1,6 +1,6 @@
 package com.cricketGame.view.showStats;
 
-import com.cricketGame.models.TeamHistory;
+import com.cricketGame.models.beans.team.TeamHistory;
 import com.cricketGame.models.stats.TeamStats;
 
 public class TeamBattingInningStatus {

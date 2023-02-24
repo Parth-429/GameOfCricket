@@ -1,13 +1,14 @@
-package com.cricketGame.dtoMappers;
+package com.cricketGame.mappers;
 
 import com.cricketGame.dto.PersonDTO;
-import com.cricketGame.models.player.Person;
+import com.cricketGame.models.beans.player.Person;
 import com.cricketGame.services.generators.ObjectIDGenerator;
 import org.springframework.stereotype.Component;
 
 @Component
 public class PersonMapper {
-    public PersonDTO toDto(Person person){
+
+    public PersonDTO toPersonDto(Person person){
         PersonDTO personDTO = new PersonDTO();
         personDTO.setFirstName(person.getFirstName());
         personDTO.setLastName(person.getLastName());

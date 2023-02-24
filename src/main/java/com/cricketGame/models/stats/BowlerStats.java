@@ -1,14 +1,15 @@
 package com.cricketGame.models.stats;
 
-import com.cricketGame.models.Bean;
+import com.cricketGame.models.beans.Bean;
 import com.cricketGame.models.enums.RunStatistics;
 import com.cricketGame.models.enums.Runs;
-import com.cricketGame.models.player.Player;
+import com.cricketGame.models.beans.player.Player;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 @Data
 @Entity
@@ -24,7 +25,7 @@ public class BowlerStats extends Bean implements Stats{
     @Transient
     private HashMap<RunStatistics, Integer> runsGivenStatisticsHashMap;
     public void updateStats(Runs runsGiven){
-        if(runsGiven.equals(Runs.WICKET))
+        if(Runs.WICKET.equals(runsGiven))
             totalWicketsTaken++;
         else
             totalRunGiven+=runsGiven.getRun();
@@ -33,7 +34,7 @@ public class BowlerStats extends Bean implements Stats{
     }
     public void updateRunStatistics(Runs runsGiven){
         RunStatistics runConstant = RunStatistics.getRunStatisticConstant(runsGiven);
-        if(this.runsGivenStatisticsHashMap==null)
+        if(Objects.isNull(this.runsGivenStatisticsHashMap))
             this.runsGivenStatisticsHashMap = new HashMap<>();
         this.runsGivenStatisticsHashMap.putIfAbsent(runConstant,0);
         this.runsGivenStatisticsHashMap.put(runConstant,runsGivenStatisticsHashMap.get(runConstant)+1);

@@ -1,7 +1,6 @@
-package com.cricketGame.models.innings;
+package com.cricketGame.models.beans;
 
 import com.cricketGame.constants.Constants;
-import com.cricketGame.models.Bean;
 import com.cricketGame.models.enums.WicketType;
 import com.cricketGame.services.generators.ObjectIDGenerator;
 import jakarta.persistence.*;

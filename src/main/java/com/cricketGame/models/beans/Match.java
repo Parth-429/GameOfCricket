@@ -1,8 +1,8 @@
-package com.cricketGame.models;
+package com.cricketGame.models.beans;
 
 import com.cricketGame.constants.Constants;
+import com.cricketGame.models.beans.team.TeamHistory;
 import com.cricketGame.models.enums.MatchFormat;
-import com.cricketGame.models.innings.Innings;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

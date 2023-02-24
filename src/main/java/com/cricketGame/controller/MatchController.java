@@ -2,10 +2,9 @@ package com.cricketGame.controller;
 
 
 import com.cricketGame.dto.MatchDTO;
-import com.cricketGame.dtoMappers.MatchMapper;
-import com.cricketGame.models.Match;
+import com.cricketGame.mappers.MatchMapper;
+import com.cricketGame.models.beans.Match;
 import com.cricketGame.services.daoServices.MatchService;
-import com.cricketGame.services.gameStarter.MatchStarter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,12 +15,12 @@ public class MatchController {
     private MatchService matchService;
     @Autowired
     private MatchMapper matchMapper;
-    @PostMapping
+    @PostMapping("/")
     public MatchDTO addMatch(@RequestBody MatchDTO matchDTO){
         Match match = matchService.saveMatch(matchDTO);
-        return matchMapper.toDto(match);
+        return matchMapper.toMatchDto(match);
     }
-    @GetMapping("/start/{id}")
+    @PostMapping("/start/{id}/") // post mapping
     public String startMatch(@PathVariable Long id){
        return matchService.checkMatchIsPlayedOrNot(id);
     }

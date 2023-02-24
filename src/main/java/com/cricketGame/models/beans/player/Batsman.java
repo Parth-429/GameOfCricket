@@ -1,7 +1,6 @@
-package com.cricketGame.models.player;
+package com.cricketGame.models.beans.player;
 import com.cricketGame.models.enums.Role;
 import jakarta.persistence.Entity;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;

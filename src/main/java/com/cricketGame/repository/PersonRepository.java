@@ -1,6 +1,6 @@
 package com.cricketGame.repository;
 
-import com.cricketGame.models.player.Person;
+import com.cricketGame.models.beans.player.Person;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

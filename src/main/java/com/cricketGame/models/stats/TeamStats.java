@@ -1,7 +1,7 @@
 package com.cricketGame.models.stats;
 
-import com.cricketGame.models.Bean;
-import com.cricketGame.models.TeamHistory;
+import com.cricketGame.models.beans.Bean;
+import com.cricketGame.models.beans.team.TeamHistory;
 import com.cricketGame.models.enums.Runs;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

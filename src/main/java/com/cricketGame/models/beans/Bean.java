@@ -1,4 +1,4 @@
-package com.cricketGame.models;
+package com.cricketGame.models.beans;
 
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;

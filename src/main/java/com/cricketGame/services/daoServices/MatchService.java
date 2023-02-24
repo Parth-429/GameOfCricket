@@ -1,10 +1,10 @@
 package com.cricketGame.services.daoServices;
 
 import com.cricketGame.dto.MatchDTO;
-import com.cricketGame.dtoMappers.MatchMapper;
-import com.cricketGame.models.Match;
+import com.cricketGame.mappers.MatchMapper;
+import com.cricketGame.models.beans.Match;
 import com.cricketGame.repository.MatchRepository;
-import com.cricketGame.services.gameStarter.MatchStarter;
+import com.cricketGame.services.starters.MatchStarter;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

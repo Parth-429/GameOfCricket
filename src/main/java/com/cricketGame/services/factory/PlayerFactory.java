@@ -1,16 +1,8 @@
 package com.cricketGame.services.factory;
-
-import com.cricketGame.models.player.Batsman;
-import com.cricketGame.models.player.Bowler;
-import com.cricketGame.models.player.Player;
-import com.cricketGame.models.enums.Role;
-import com.cricketGame.services.generators.ObjectIDGenerator;
-import com.cricketGame.services.generators.RandomNumberGenerator;
-import org.springframework.stereotype.Component;
-
-import java.util.List;
-
+//now it will be done by API call, through constructor
+//Kept for debugging
 public class PlayerFactory{
+
 //    public static final String BOWLER = "Bowler";
 //    public static int playerNo = 0;
 //    public static Player create(long teamID) {

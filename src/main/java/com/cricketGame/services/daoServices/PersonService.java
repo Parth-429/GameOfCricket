@@ -1,11 +1,8 @@
 package com.cricketGame.services.daoServices;
 
 import com.cricketGame.dto.PersonDTO;
-import com.cricketGame.dto.PlayerDTO;
-import com.cricketGame.dtoMappers.PersonMapper;
-import com.cricketGame.dtoMappers.PlayerMapper;
-import com.cricketGame.models.player.Person;
-import com.cricketGame.models.player.Player;
+import com.cricketGame.mappers.PersonMapper;
+import com.cricketGame.models.beans.player.Person;
 import com.cricketGame.repository.PersonRepository;
 import lombok.AllArgsConstructor;
 import lombok.Data;

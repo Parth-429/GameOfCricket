@@ -1,14 +1,10 @@
-package com.cricketGame.models.player;
-import com.cricketGame.models.Bean;
+package com.cricketGame.models.beans.player;
+import com.cricketGame.models.beans.Bean;
 import com.cricketGame.models.enums.Role;
 import com.cricketGame.models.stats.BatsmanStats;
 import com.cricketGame.models.stats.BowlerStats;
 import com.cricketGame.models.stats.Stats;
 import com.cricketGame.services.generators.ObjectIDGenerator;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,7 +17,7 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper=false)
 @Entity
 @Table(name = "player")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE) // composition over inheritance
 public abstract class Player extends Bean {
     @ManyToOne(targetEntity = Person.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "person_id", referencedColumnName = "id")

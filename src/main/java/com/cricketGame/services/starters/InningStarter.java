@@ -1,12 +1,12 @@
-package com.cricketGame.services.gameStarter;
+package com.cricketGame.services.starters;
 
 import com.cricketGame.constants.Constants;
-import com.cricketGame.models.*;
+import com.cricketGame.models.beans.*;
+import com.cricketGame.models.beans.team.TeamHistory;
 import com.cricketGame.models.enums.Role;
 import com.cricketGame.models.enums.Runs;
 import com.cricketGame.models.enums.WicketType;
-import com.cricketGame.models.innings.*;
-import com.cricketGame.models.player.Player;
+import com.cricketGame.models.beans.player.Player;
 import com.cricketGame.models.stats.TeamStats;
 import com.cricketGame.services.generators.ObjectIDGenerator;
 import com.cricketGame.services.generators.RandomNumberGenerator;

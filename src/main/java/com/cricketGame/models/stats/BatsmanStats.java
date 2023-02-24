@@ -1,11 +1,11 @@
 package com.cricketGame.models.stats;
 
-import com.cricketGame.models.Bean;
-import com.cricketGame.models.innings.Ball;
+import com.cricketGame.models.beans.Bean;
+import com.cricketGame.models.beans.Ball;
 import com.cricketGame.models.enums.PlayerBattingStatus;
 import com.cricketGame.models.enums.RunStatistics;
 import com.cricketGame.models.enums.Runs;
-import com.cricketGame.models.player.Player;
+import com.cricketGame.models.beans.player.Player;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -36,6 +36,7 @@ public class BatsmanStats extends Bean implements Stats {
     @MapKeyColumn(name = "run")
     @Column(name = "frequency")
     private Map<RunStatistics, Integer> runStatisticsHashMap;
+
     @Transient
     private Optional<Ball> wicketStats;
     public void updateStats(Runs runsTaken){

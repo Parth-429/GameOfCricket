@@ -1,11 +1,9 @@
-package com.cricketGame.models.innings;
+package com.cricketGame.models.beans;
 
-import com.cricketGame.models.Bean;
 import com.cricketGame.models.enums.Runs;
-import com.cricketGame.models.player.Player;
+import com.cricketGame.models.beans.player.Player;
 import com.cricketGame.services.generators.ObjectIDGenerator;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;

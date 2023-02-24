@@ -1,28 +1,24 @@
 package com.cricketGame.services.daoServices;
 
-import com.cricketGame.models.Match;
-import com.cricketGame.models.innings.Innings;
-import com.cricketGame.models.stats.TeamStats;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
+//name change daoService
 @Component
 @Data
 public class AllService {
     public static MatchService matchService;
     public static PlayerService playerService;
-    public static TeamService teamService;
-
+    public static TeamHistoryService teamHistoryService;
     public static PersonService personService;
-    public static _TeamService _teamService;
+    public static TeamService teamService;
     @Autowired
-    public AllService(MatchService matchService,PlayerService playerService,
-                      TeamService teamService, PersonService personService, _TeamService _teamService) {
-        this.teamService = teamService;
-        this.playerService = playerService;
-        this.matchService = matchService;
-        this._teamService = _teamService;
-        this.personService = personService;
+    public AllService(MatchService matchService, PlayerService playerService,
+                      TeamHistoryService teamHistoryService, PersonService personService, TeamService teamService) {
+        AllService.teamHistoryService = teamHistoryService;
+        AllService.playerService = playerService;
+        AllService.matchService = matchService;
+        AllService.teamService = teamService;
+        AllService.personService = personService;
     }
 }

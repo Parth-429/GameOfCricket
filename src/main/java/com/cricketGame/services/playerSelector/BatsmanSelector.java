@@ -1,6 +1,6 @@
 package com.cricketGame.services.playerSelector;
 
-import com.cricketGame.models.player.Player;
+import com.cricketGame.models.beans.player.Player;
 
 import java.util.List;
 
