@@ -20,13 +20,6 @@ public class TeamService {
     }
     public Team findTeamById(Long id){
         Optional<Team> checkTeam = this.teamRepository.findById(id);
-        try {
-            if (!checkTeam.isPresent())
-                throw new IllegalArgumentException("Error : Team with given id is not exist");
-        }catch(Exception e){
-            e.printStackTrace();
-            System.out.println(e.getMessage());
-        }
-        return checkTeam.get();
+        return checkTeam.orElse(null);
     }
 }

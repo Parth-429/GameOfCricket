@@ -8,7 +8,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.MethodParameter;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 
 import java.util.Optional;
 
@@ -27,13 +30,6 @@ public class PersonService {
     }
     public Person findPersonById(Long id){
         Optional<Person> checkPerson = this.personRepository.findById(id);
-        try {
-            if (!checkPerson.isPresent())
-                throw new IllegalArgumentException("Error : Person with given id is not exist");
-        }catch(Exception e){
-            e.printStackTrace();
-            System.out.println(e.getMessage());
-        }
-        return checkPerson.get();
+        return checkPerson.orElse(null);
     }
 }

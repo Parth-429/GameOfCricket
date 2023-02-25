@@ -15,16 +15,16 @@ public class PlayerMapper {
     public PlayerDTO toPlayerDto(Player player){
         PlayerDTO playerDTO = new PlayerDTO();
         playerDTO.setPersonId(player.getPerson().getId());
-        playerDTO.setRole(player.getRole().getDisplayValue());
+        playerDTO.setRole(player.getRole());
         playerDTO.setBattingOrderNo(player.getBatsmanOrderNo());
         return playerDTO;
     }
     public Player toPlayer(PlayerDTO playerDTO){
-        String role = playerDTO.getRole();
+        Role role = playerDTO.getRole();
         int battingOrderNo = playerDTO.getBattingOrderNo();
         Person person = AllService.personService.findPersonById(playerDTO.getPersonId());
         Long playerID = ObjectIDGenerator.getID();
-        if(Role.BOWLER.name().equalsIgnoreCase(role))
+        if(Role.BOWLER.equals(role))
             return new Bowler(playerID, person, battingOrderNo);
         else
             return new Batsman(playerID,person, battingOrderNo);

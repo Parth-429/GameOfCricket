@@ -22,20 +22,12 @@ public class MatchService {
         Match match = matchMapper.toMatch(matchDTO);
         return this.matchRepository.save(match);
     }
-
     public void updateMatch(Match match){
         this.matchRepository.save(match);
     }
     public Match findMatchById(Long id){
         Optional<Match> checkMatch = this.matchRepository.findById(id);
-        try {
-            if (!checkMatch.isPresent())
-                throw new IllegalArgumentException("Error : Match with given id is not exist");
-        }catch(Exception e){
-            e.printStackTrace();
-            System.out.println(e.getMessage());
-        }
-        return checkMatch.get();
+        return checkMatch.orElse(null);
     }
 
     public String checkMatchIsPlayedOrNot(Long id){

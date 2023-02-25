@@ -19,15 +19,4 @@ public class PlayerService {
         Player player = playerMapper.toPlayer(playerDTO);
         return this.playerRepository.save(player);
     }
-    public Player findPlayerById(Long id){
-        Optional<Player> checkPlayer = this.playerRepository.findById(id);
-        try {
-            if (!checkPlayer.isPresent())
-                throw new IllegalArgumentException("Error : Player with given id is not exist");
-        }catch(Exception e){
-            e.printStackTrace();
-            System.out.println(e.getMessage());
-        }
-        return checkPlayer.get();
-    }
 }

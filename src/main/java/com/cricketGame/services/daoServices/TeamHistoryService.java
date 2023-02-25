@@ -22,13 +22,6 @@ public class TeamHistoryService {
     }
     public TeamHistory findTeamById(Long id){
         Optional<TeamHistory> checkTeam = this.teamHistoryRepository.findById(id);
-        try {
-            if (!checkTeam.isPresent())
-                throw new IllegalArgumentException("Error : Team with given id is not exist");
-        }catch(Exception e){
-            e.printStackTrace();
-            System.out.println(e.getMessage());
-        }
-        return checkTeam.get();
+        return checkTeam.orElse(null);
     }
 }

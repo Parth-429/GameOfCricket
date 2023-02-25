@@ -31,13 +31,13 @@ public class Match extends Bean{
     @OneToOne(targetEntity = TeamHistory.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "winner", referencedColumnName = "id")
     private TeamHistory winner;
-    public Match(long matchId, TeamHistory team1, TeamHistory team2, int allowedTeamSize, String format){
+    public Match(long matchId, TeamHistory team1, TeamHistory team2, int allowedTeamSize, MatchFormat format){
         super(matchId);
         this.team1 = team1;
         this.team2 = team2;
         Constants.ALLOWED_TEAM_SIZE = allowedTeamSize;
         this.innings = new ArrayList<>();
-        this.format = MatchFormat.getMatchFormat(format);
+        this.format = format;
         Constants.MAX_NO_OF_OVERS = this.format.getNoOfOvers();
     }
 

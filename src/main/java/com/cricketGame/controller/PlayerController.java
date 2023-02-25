@@ -4,7 +4,9 @@ import com.cricketGame.dto.PlayerDTO;
 import com.cricketGame.mappers.PlayerMapper;
 import com.cricketGame.models.beans.player.Player;
 import com.cricketGame.services.daoServices.PlayerService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,8 +20,8 @@ public class PlayerController {
     @Autowired
     public PlayerMapper playerMapper;
     @PostMapping("/")
-    public PlayerDTO addPlayer(@RequestBody PlayerDTO playerDTO){
+    public ResponseEntity<PlayerDTO> addPlayer(@Valid @RequestBody PlayerDTO playerDTO){
         Player player = playerService.savePlayer(playerDTO);
-        return playerMapper.toPlayerDto(player);
+        return ResponseEntity.ok(playerMapper.toPlayerDto(player));
     }
 }
