@@ -12,7 +12,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = IsMatchExistValidator.class)
 @Target(ElementType.FIELD)
-public @interface IsMatchExist {
+public @interface ValidMatchID {
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
     String message() default "Match with given id is not exist";

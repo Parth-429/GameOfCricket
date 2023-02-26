@@ -3,17 +3,17 @@ package com.cricketGame.validators;
 
 import com.cricketGame.models.beans.team.Team;
 import com.cricketGame.services.daoServices.AllService;
-import com.cricketGame.validatorAnnotations.IsTeamExist;
+import com.cricketGame.validatorAnnotations.ValidTeamId;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 
 import java.util.Objects;
 
 
-public class IsTeamExistValidator implements ConstraintValidator<IsTeamExist, Long> {
+public class IsTeamExistValidator implements ConstraintValidator<ValidTeamId, Long> {
 
     @Override
-    public void initialize(IsTeamExist constraintAnnotation) {
+    public void initialize(ValidTeamId constraintAnnotation) {
 
     }
 

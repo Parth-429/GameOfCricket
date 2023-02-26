@@ -2,16 +2,16 @@ package com.cricketGame.validators;
 
 import com.cricketGame.models.beans.player.Person;
 import com.cricketGame.services.daoServices.AllService;
-import com.cricketGame.validatorAnnotations.IsPersonExist;
+import com.cricketGame.validatorAnnotations.ValidPersonId;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 
 import java.util.Objects;
 
-public class IsPersonExistValidator implements ConstraintValidator<IsPersonExist, Long> {
+public class IsPersonExistValidator implements ConstraintValidator<ValidPersonId, Long> {
 
     @Override
-    public void initialize(IsPersonExist constraintAnnotation) {
+    public void initialize(ValidPersonId constraintAnnotation) {
 
     }
 

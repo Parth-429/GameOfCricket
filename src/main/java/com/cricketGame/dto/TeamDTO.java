@@ -1,6 +1,6 @@
 package com.cricketGame.dto;
 
-import com.cricketGame.validatorAnnotations.IsTeamExist;
+import com.cricketGame.validatorAnnotations.ValidTeamId;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotEmpty;
@@ -16,7 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TeamDTO {
-    @NonNull @IsTeamExist
+    @NonNull @ValidTeamId
     private Long teamId;
     private int teamSize;
     @NotEmpty @Valid

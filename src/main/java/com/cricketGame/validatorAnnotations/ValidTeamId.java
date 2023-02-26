@@ -1,6 +1,6 @@
 package com.cricketGame.validatorAnnotations;
 
-import com.cricketGame.validators.IsPersonExistValidator;
+import com.cricketGame.validators.IsTeamExistValidator;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 
@@ -10,10 +10,10 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = IsPersonExistValidator.class)
+@Constraint(validatedBy = IsTeamExistValidator.class)
 @Target(ElementType.FIELD)
-public @interface IsPersonExist {
+public @interface ValidTeamId {
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
-    String message() default "Person with given id is not exist";
+    String message() default "Team with given id is not exist";
 }

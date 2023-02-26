@@ -2,16 +2,16 @@ package com.cricketGame.validators;
 
 import com.cricketGame.models.beans.Match;
 import com.cricketGame.services.daoServices.AllService;
-import com.cricketGame.validatorAnnotations.IsMatchExist;
+import com.cricketGame.validatorAnnotations.ValidMatchID;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 
 import java.util.Objects;
 
-public class IsMatchExistValidator implements ConstraintValidator<IsMatchExist,Long> {
+public class IsMatchExistValidator implements ConstraintValidator<ValidMatchID,Long> {
 
     @Override
-    public void initialize(IsMatchExist constraintAnnotation) {
+    public void initialize(ValidMatchID constraintAnnotation) {
 
     }
 
