@@ -3,6 +3,7 @@ package com.cricketGame.services.daoServices;
 import com.cricketGame.dto.PersonDTO;
 import com.cricketGame.mappers.PersonMapper;
 import com.cricketGame.models.beans.player.Person;
+import com.cricketGame.models.beans.player.Player;
 import com.cricketGame.repository.PersonRepository;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,6 +14,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -31,5 +34,10 @@ public class PersonService {
     public Person findPersonById(Long id){
         Optional<Person> checkPerson = this.personRepository.findById(id);
         return checkPerson.orElse(null);
+    }
+    public List<Person> findPersonByName(String firstName, String lastName){
+        List<Person> checkPerson;
+        checkPerson = this.personRepository.findByFirstNameAndLastName(firstName,lastName);
+        return checkPerson;
     }
 }

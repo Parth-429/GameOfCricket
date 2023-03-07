@@ -12,6 +12,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @EqualsAndHashCode(callSuper=false)
+@Table(indexes = {
+        @Index(name = "prtnrshp_indx_striker_nonStriker",  columnList = "batsman1, batsman2")
+})
 public class PartnerShip extends Bean{
     @ManyToOne(targetEntity = Player.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "batsman1", referencedColumnName = "id")

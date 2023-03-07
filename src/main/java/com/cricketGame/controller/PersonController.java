@@ -7,10 +7,9 @@ import com.cricketGame.services.daoServices.PersonService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/person")
@@ -23,5 +22,10 @@ public class PersonController {
     public ResponseEntity<PersonDTO> addPerson(@Valid @RequestBody PersonDTO personDTO){
         Person person = this.personService.savePerson(personDTO);
         return ResponseEntity.ok(personMapper.toPersonDto(person));
+    }
+    @GetMapping("/name/{fName}/{lName}/")
+    public List<Person> findPersonByName(@PathVariable(name = "fName") String firstName,
+                                         @PathVariable(name = "lName") String lastName){
+        return this.personService.findPersonByName(firstName,lastName);
     }
 }

@@ -15,7 +15,9 @@ import java.util.Optional;
 @EqualsAndHashCode(callSuper=false)
 @Entity
 @NoArgsConstructor
-@Table(name = "ball")
+@Table(name = "ball",
+       indexes = { @Index(name = "ball_indx", columnList = "bowler_id") }
+       )
 public class Ball extends Bean {
     @ManyToOne(targetEntity = Player.class, cascade = CascadeType.ALL)
     @JoinColumn(name="bowler_id", referencedColumnName = "id")

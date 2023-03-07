@@ -26,4 +26,5 @@ public class MatchController {
     public String startMatch(@PathVariable Long id){
        return matchService.checkMatchIsPlayedOrNot(id);
     }
+
 }

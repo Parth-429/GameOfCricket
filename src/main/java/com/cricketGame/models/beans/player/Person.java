@@ -16,9 +16,10 @@ import java.io.Serializable;
 @EqualsAndHashCode(callSuper=false)
 @AllArgsConstructor
 @Entity
-@Table(indexes = @Index(name = "hello", columnList = "firstName"))
+@Table(indexes = {
+        @Index(name = "prsn_nm_indx", columnList = "firstName, lastName")
+})
 public class Person extends Bean implements Serializable {
-
     private String firstName;
     private String lastName;
     private int age;

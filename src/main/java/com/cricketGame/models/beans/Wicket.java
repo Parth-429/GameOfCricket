@@ -12,6 +12,9 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper=false)
 @Entity
 @NoArgsConstructor
+@Table(indexes = {
+        @Index(name = "wckt_wcktno_indx", columnList = "wicketNo")
+})
 public class Wicket extends Bean {
     private long playerID;
     @Enumerated(EnumType.STRING)

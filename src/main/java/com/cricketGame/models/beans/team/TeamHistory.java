@@ -16,6 +16,9 @@ import java.util.Objects;
 @EqualsAndHashCode(callSuper=false)
 @Entity
 @NoArgsConstructor
+@Table(indexes = {
+        @Index(name = "tmhstry_tm_indx", columnList = "team_id")
+})
 public class TeamHistory extends Bean {
     @ManyToOne(targetEntity = Team.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "team_id", referencedColumnName = "id")

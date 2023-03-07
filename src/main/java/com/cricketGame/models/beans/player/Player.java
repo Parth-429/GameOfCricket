@@ -16,7 +16,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper=false)
 @Entity
-@Table(name = "player")
+@Table(name = "player",
+       indexes = {
+        @Index(name="plyr_prsn_id_indx", columnList = "person_id")
+       })
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE) // composition over inheritance
 public abstract class Player extends Bean {
     @ManyToOne(targetEntity = Person.class, cascade = CascadeType.ALL)

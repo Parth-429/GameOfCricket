@@ -14,7 +14,10 @@ import java.util.List;
 @Data
 @EqualsAndHashCode(callSuper=false)
 @Entity
-@Table(name = "match_of_cricket")
+@Table(name = "match_of_cricket",
+       indexes = {
+        @Index(name = "mtch_indx_winnr", columnList = "winner")
+})
 @NoArgsConstructor
 public class Match extends Bean{
     @OneToOne(targetEntity = TeamHistory.class, cascade = CascadeType.ALL)
