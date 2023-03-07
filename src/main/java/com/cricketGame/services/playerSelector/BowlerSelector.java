@@ -4,6 +4,7 @@ import com.cricketGame.models.beans.player.Player;
 import com.cricketGame.services.generators.RandomNumberGenerator;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 public class BowlerSelector {
@@ -14,7 +15,7 @@ public class BowlerSelector {
             return bowlers.get(rm.nextInt(totalBowlers));
         int i = 0;
         for(Player player: bowlers) {
-            if (player.getId() == prevBowler.getId())
+            if (Objects.equals(player.getId(), prevBowler.getId()))
                 break;
             i++;
         }
