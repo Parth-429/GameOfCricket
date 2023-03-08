@@ -9,16 +9,19 @@ import com.cricketGame.services.generators.CoinTosser;
 import com.cricketGame.services.factory.MatchFactory;
 import com.cricketGame.view.ScoreCard;
 import lombok.Data;
-
-import static com.cricketGame.services.starters.InningStarter.playInning;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 @Data
-
+@Component
 public class MatchStarter {
+    @Autowired
+    private CoinTosser coinTosser;
+    @Autowired
+    private InningStarter inningStarter;
 
-    public static String startGame(Long id) {
-        Match match = MatchFactory.create(id);
-        if (CoinTosser.tossCoin().equals(Coin.HEAD)) {
+    public String startGame(Match match) {
+        if (coinTosser.tossCoin().equals(Coin.HEAD)) {
             match.swap();
         }
         String result = "";
@@ -28,7 +31,7 @@ public class MatchStarter {
         System.out.println(result);
 
         Innings firstInning = match.addNewInnings(new Innings(match.getTeam1(), match.getTeam2()));
-        int firstInningScore = playInning(firstInning.getBattingTeam(), firstInning.getBowlingTeam(),
+        int firstInningScore = inningStarter.playInning(firstInning.getBattingTeam(), firstInning.getBowlingTeam(),
                 firstInning, false);
         result += (firstInning.getBattingTeam().getName() + " has Scored " + firstInningScore + " by losing " +
                            ((TeamStats) firstInning.getBattingTeam().getTeamStats()).getTotalWickets() + " wickets.") + "\n";
@@ -37,7 +40,7 @@ public class MatchStarter {
         System.out.println(result);
 
         Innings secondInning = match.addNewInnings(new Innings(match.getTeam2(), match.getTeam1()));
-        int secondInningScore = playInning(secondInning.getBattingTeam(), secondInning.getBowlingTeam(),
+        int secondInningScore = inningStarter.playInning(secondInning.getBattingTeam(), secondInning.getBowlingTeam(),
                 secondInning, true);
         result += (
                 secondInning.getBattingTeam().getName() + " has Scored " + secondInningScore + " by losing " +

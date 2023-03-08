@@ -20,6 +20,8 @@ public class MatchService {
     private MatchRepository matchRepository;
     @Autowired
     private MatchMapper matchMapper;
+    @Autowired
+    private MatchStarter matchStarter;
     public Match saveMatch(MatchDTO matchDTO){
         Match match = matchMapper.toMatch(matchDTO);
         return this.matchRepository.save(match);
@@ -50,6 +52,6 @@ public class MatchService {
             e.printStackTrace();
             return e.getMessage();
         }
-        return  MatchStarter.startGame(id);
+        return  matchStarter.startGame(match);
     }
 }

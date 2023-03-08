@@ -11,18 +11,28 @@ import com.cricketGame.models.stats.TeamStats;
 import com.cricketGame.services.generators.ObjectIDGenerator;
 import com.cricketGame.services.generators.RandomNumberGenerator;
 import com.cricketGame.services.generators.RunGenerator;
+import com.cricketGame.services.playerSelector.BatsmanSelector;
+import com.cricketGame.services.playerSelector.BowlerSelector;
 import lombok.Data;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import static com.cricketGame.services.playerSelector.BatsmanSelector.selectBatsman;
-import static com.cricketGame.services.playerSelector.BowlerSelector.selectBowler;
 
 @Data
+@Component
 public class InningStarter {
-    public static int playInning(TeamHistory battingTeam, TeamHistory bowlingTeam, Innings inning, Boolean isSecondInning) {
+
+    @Autowired
+    private BatsmanSelector batsmanSelector;
+    @Autowired
+    private BowlerSelector bowlerSelector;
+    @Autowired
+    private RunGenerator runGenerator;
+    public int playInning(TeamHistory battingTeam, TeamHistory bowlingTeam, Innings inning, Boolean isSecondInning) {
 
         boolean isAllOut = false;
         List<Player> battingTeamBatsman = new ArrayList<>(battingTeam.getPlayers());
@@ -33,8 +43,8 @@ public class InningStarter {
             }
         }
 
-        PartnerShip partnerShipOfStrikerNonStriker = new PartnerShip(selectBatsman(battingTeamBatsman),
-                selectBatsman(battingTeamBatsman));
+        PartnerShip partnerShipOfStrikerNonStriker = new PartnerShip(batsmanSelector.selectBatsman(battingTeamBatsman),
+                batsmanSelector.selectBatsman(battingTeamBatsman));
         int target = Integer.MAX_VALUE;
         if (isSecondInning) {
             target = ((TeamStats) (bowlingTeam.getTeamStats())).getTotalScore();
@@ -42,14 +52,14 @@ public class InningStarter {
         Player bowler = null;
 
         for (Over over : inning.getOvers()) {
-            bowler = selectBowler(bowler, bowlingTeamBowlers);
+            bowler = bowlerSelector.selectBowler(bowler, bowlingTeamBowlers);
             for (int ball = Constants.BALL_START; ball <= Constants.MAX_BALLS_IN_ONE_OVER; ball++) {
 
                 Runs runOnThisBall = getRuns(partnerShipOfStrikerNonStriker);
                 addBalltoOver(partnerShipOfStrikerNonStriker, bowler, over, runOnThisBall);
                 if (runOnThisBall.equals(Runs.WICKET)) {
                     updateStatisticsAfterWicket(inning, battingTeamBatsman, partnerShipOfStrikerNonStriker, over, ball, runOnThisBall);
-                    partnerShipOfStrikerNonStriker = new PartnerShip(selectBatsman(battingTeamBatsman),
+                    partnerShipOfStrikerNonStriker = new PartnerShip(batsmanSelector.selectBatsman(battingTeamBatsman),
                             partnerShipOfStrikerNonStriker.getNonStriker());
                     isAllOut = checkIsAllOut(false, partnerShipOfStrikerNonStriker);
                 } else {
@@ -77,7 +87,7 @@ public class InningStarter {
         return ((TeamStats) battingTeam.getTeamStats()).getTotalScore();
     }
 
-    private static void updateStatisticsIfNotWicket(PartnerShip partnerShipOfStrikerNonStriker, Runs runOnThisBall) {
+    private void updateStatisticsIfNotWicket(PartnerShip partnerShipOfStrikerNonStriker, Runs runOnThisBall) {
         int currentRun = runOnThisBall.getRun();
         getStriker(partnerShipOfStrikerNonStriker).getBatsmanStats().updateStats(runOnThisBall);
         partnerShipOfStrikerNonStriker.updateRunsMadeInPartnerShip(runOnThisBall);
@@ -86,7 +96,8 @@ public class InningStarter {
         }
     }
 
-    private static void updateStatisticsAfterWicket(Innings scorecard, List<Player> battingTeamBatsman, PartnerShip partnerShipOfStrikerNonStriker,
+    private void updateStatisticsAfterWicket(Innings scorecard, List<Player> battingTeamBatsman,
+                                             PartnerShip partnerShipOfStrikerNonStriker,
                                                     Over over, int ball, Runs runOnThisBall) {
         getStriker(partnerShipOfStrikerNonStriker).getBatsmanStats().updateStats(runOnThisBall);
         Wicket wicket = new Wicket(getStriker(partnerShipOfStrikerNonStriker).getId(), getWicketType());
@@ -94,7 +105,7 @@ public class InningStarter {
         scorecard.getWickets().add(wicket);
     }
 
-    private static boolean checkIsAllOut(boolean isAllOut, PartnerShip partnerShipOfStrikerNonStriker) {
+    private boolean checkIsAllOut(boolean isAllOut, PartnerShip partnerShipOfStrikerNonStriker) {
         if (Objects.isNull(getStriker(partnerShipOfStrikerNonStriker))) {
             isAllOut = true;
             partnerShipOfStrikerNonStriker.swap();
@@ -102,26 +113,26 @@ public class InningStarter {
         return isAllOut;
     }
 
-    private static void addBalltoOver(PartnerShip partnerShipOfStrikerNonStriker, Player bowler, Over over, Runs runOnThisBall) {
+    private void addBalltoOver(PartnerShip partnerShipOfStrikerNonStriker, Player bowler, Over over, Runs runOnThisBall) {
         over.getBallsOfOver()
             .add(new Ball(ObjectIDGenerator.getID(), bowler, partnerShipOfStrikerNonStriker, runOnThisBall));
     }
 
-    private static Runs getRuns(PartnerShip partnerShipOfStrikerNonStriker) {
+    private Runs getRuns(PartnerShip partnerShipOfStrikerNonStriker) {
         Runs runOnThisBall;
         if (Role.BATSMAN.equals(getStriker(partnerShipOfStrikerNonStriker).getRole())) {
-            runOnThisBall = RunGenerator.generateRun(Role.BATSMAN);
+            runOnThisBall = runGenerator.generateRun(Role.BATSMAN);
         } else {
-            runOnThisBall = RunGenerator.generateRun(Role.BOWLER);
+            runOnThisBall = runGenerator.generateRun(Role.BOWLER);
         }
         return runOnThisBall;
     }
 
-    private static Player getStriker(PartnerShip partnerShipOfStrikerNonStriker) {
+    private Player getStriker(PartnerShip partnerShipOfStrikerNonStriker) {
         return partnerShipOfStrikerNonStriker.getStriker();
     }
 
-    private static WicketType getWicketType() {
+    private WicketType getWicketType() {
         return WicketType.values()[RandomNumberGenerator.getInstance().nextInt(WicketType.values().length)];
     }
 }

@@ -2,13 +2,15 @@ package com.cricketGame.services.playerSelector;
 
 import com.cricketGame.models.beans.player.Player;
 import com.cricketGame.services.generators.RandomNumberGenerator;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
+@Component
 public class BowlerSelector {
-    public static Player selectBowler(Player prevBowler, List<Player> bowlers){
+    public Player selectBowler(Player prevBowler, List<Player> bowlers){
         Random rm = RandomNumberGenerator.getInstance();
         int totalBowlers = bowlers.size();
         if(prevBowler==null)
