@@ -16,7 +16,9 @@ import java.util.List;
 @Entity
 @Table(name = "match_of_cricket",
        indexes = {
-        @Index(name = "mtch_indx_winnr", columnList = "winner")
+        @Index(name = "mtch_indx_winnr", columnList = "winner"),
+               @Index(name="mtch_indx_team1", columnList = "team1_id"),
+               @Index(name = "mtch_idx_team2", columnList = "team2_id")
 })
 @NoArgsConstructor
 public class Match extends Bean{

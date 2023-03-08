@@ -7,6 +7,8 @@ import com.cricketGame.services.generators.ObjectIDGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -21,5 +23,11 @@ public class TeamService {
     public Team findTeamById(Long id){
         Optional<Team> checkTeam = this.teamRepository.findById(id);
         return checkTeam.orElse(null);
+    }
+
+    public List<Team> findTeamByName(String name){
+        List<Team> teams;
+        teams = teamRepository.findByName(name);
+        return teams;
     }
 }

@@ -24,8 +24,8 @@ public class PersonController {
         return ResponseEntity.ok(personMapper.toPersonDto(person));
     }
     @GetMapping("/name/{fName}/{lName}/")
-    public List<Person> findPersonByName(@PathVariable(name = "fName") String firstName,
+    public ResponseEntity<List<Person>> findPersonByName(@PathVariable(name = "fName") String firstName,
                                          @PathVariable(name = "lName") String lastName){
-        return this.personService.findPersonByName(firstName,lastName);
+        return ResponseEntity.ok(this.personService.findPersonByName(firstName,lastName));
     }
 }

@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/match")
 public class MatchController {
@@ -27,4 +29,8 @@ public class MatchController {
        return matchService.checkMatchIsPlayedOrNot(id);
     }
 
+    @GetMapping("/playedMatches/{team_id}/")
+    public ResponseEntity<List<MatchDTO>> findMatchesPlayedByTeam(@PathVariable Long teamId){
+        return ResponseEntity.ok(matchService.findMatchPlayedByTeamById(teamId));
+    }
 }

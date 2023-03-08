@@ -9,6 +9,8 @@ import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Data
@@ -28,6 +30,14 @@ public class MatchService {
     public Match findMatchById(Long id){
         Optional<Match> checkMatch = this.matchRepository.findById(id);
         return checkMatch.orElse(null);
+    }
+
+    public List<MatchDTO> findMatchPlayedByTeamById(Long id){
+        List<MatchDTO> matches =new ArrayList<>();
+        for(Match match: matchRepository.findMatchByTeamID(id)){
+            matches.add(matchMapper.toMatchDto(match));
+        }
+        return matches;
     }
 
     public String checkMatchIsPlayedOrNot(Long id){

@@ -7,10 +7,9 @@ import com.cricketGame.services.daoServices.PlayerService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/player")
@@ -23,5 +22,10 @@ public class PlayerController {
     public ResponseEntity<PlayerDTO> addPlayer(@Valid @RequestBody PlayerDTO playerDTO){
         Player player = playerService.savePlayer(playerDTO);
         return ResponseEntity.ok(playerMapper.toPlayerDto(player));
+    }
+
+    @GetMapping("/person/{person_id}/")
+    public ResponseEntity<List<PlayerDTO>> findPlayerByPersonId(@PathVariable(name = "person_id") Long personId){
+        return ResponseEntity.ok(playerService.findPlayerByPerson(personId));
     }
 }

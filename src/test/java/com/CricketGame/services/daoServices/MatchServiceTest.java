@@ -1,67 +1,80 @@
 package com.CricketGame.services.daoServices;
 
+import com.CricketGame.utils.Utils;
 import com.cricketGame.dto.MatchDTO;
 import com.cricketGame.mappers.MatchMapper;
 import com.cricketGame.models.beans.Match;
 import com.cricketGame.repository.MatchRepository;
 import com.cricketGame.services.daoServices.MatchService;
+import com.cricketGame.services.starters.MatchStarter;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
+
 class MatchServiceTest {
-
     @Mock
-    MatchRepository matchRepository;
-    @Spy
-    MatchMapper matchMapper;
+    private MatchRepository matchRepository;
+    @Mock
+    private MatchMapper matchMapper;
     @InjectMocks
-    MatchService  matchService;
-    @Captor
-    ArgumentCaptor<Match> match;
+    private MatchService  matchService;
 
     @Test
-    void saveMatch() {
+    public void saveMatch(){
         //given
-        MatchDTO matchDTO = new MatchDTO();
+        MatchDTO matchDTO = Utils.getMatchDTO();
+        Match expectedMatch = Utils.getMatch("TeamX", "TeamY");
+        when(matchMapper.toMatch(matchDTO)).thenReturn(expectedMatch);
+        when(matchRepository.save(expectedMatch)).thenReturn(expectedMatch);
+
         //when
-        matchService.saveMatch(matchDTO);
-        //Assertion
-        verify(matchRepository).save(match.capture());
+        Match actualMatch = matchService.saveMatch(matchDTO);
+
+        //assertions
+        verify(matchMapper, times(1)).toMatch(matchDTO);
+        verify(matchRepository, times(1)).save(expectedMatch);
+        assertEquals(expectedMatch, actualMatch);
     }
 
     @Test
-    void updateMatch() {
+    public void findMatchById_WhenIDIsValid(){
+
+        //given
+        Match expectedMatch = Utils.getMatch("TeamX", "TeamY");
+        when(matchRepository.findById(anyLong())).thenReturn(Optional.ofNullable(expectedMatch));
+
+        //when
+        Match actuaMatch = matchService.findMatchById(10L);
+
+        //assertions
+        verify(matchRepository, times(1)).findById(10L);
+        assertEquals(actuaMatch,expectedMatch);
     }
 
     @Test
-    void findMatchById() {
+    public void findMatchById_WhenIDIsNotValid(){
+        //given
+        Match expectedMatch = null;
+        when(matchRepository.findById(anyLong())).thenReturn(Optional.ofNullable(expectedMatch));
+
+        //when
+        Match actuaMatch = matchService.findMatchById(10L);
+
+        //assertions
+        verify(matchRepository, times(1)).findById(10L);
+        assertEquals(actuaMatch,actuaMatch);
     }
 
-    @Test
-    void checkMatchIsPlayedOrNot() {
-    }
-
-    @Test
-    void getMatchRepository() {
-    }
-
-    @Test
-    void getMatchMapper() {
-    }
-
-    @Test
-    void setMatchRepository() {
-    }
-
-    @Test
-    void setMatchMapper() {
-    }
 }
