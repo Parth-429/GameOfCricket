@@ -1,5 +1,7 @@
 package com.CricketGame.services.daoServices;
 
+import com.CricketGame.utils.DtoUtils;
+import com.CricketGame.utils.PersonUtils;
 import com.cricketGame.dto.PersonDTO;
 import com.cricketGame.mappers.PersonMapper;
 import com.cricketGame.models.beans.player.Person;
@@ -11,42 +13,74 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.*;
-
 
 @ExtendWith(MockitoExtension.class)
 class PersonServiceTest {
     @Mock
     PersonRepository personRepository;
-    @Spy
+    @Mock
     PersonMapper personMapper;
     @InjectMocks
     PersonService personService;
-    @Captor
-    ArgumentCaptor<Person> person;
     @Test
     void savePerson() {
         //given
-        PersonDTO personDTO = new PersonDTO("Parth","Prajapati", 19);
+        PersonDTO personDTO = DtoUtils.getPersonDTO();
+        Person person = PersonUtils.getPerson("Parth","Prajapati", 24);
+        when(personMapper.toPerson(any(PersonDTO.class))).thenReturn(person);
+        when(personRepository.save(any(Person.class))).thenReturn(person);
         //when
-        personService.savePerson(personDTO);
+        Person actualPerson = personService.savePerson(personDTO);
         //Assertion
-        verify(personRepository).save(person.capture());
+        assertEquals(person, actualPerson);
     }
 
     @Test
-    void findPlayerByID(){
+    void findPlayerByID_WhenValidPersonId(){
         //given
-        Person expectedPerson = new Person("Parth","Prajapati", 19);
+        Person expectedPerson = PersonUtils.getPerson("Parth","Prajapati", 24);
         when(personRepository.findById(anyLong())).thenReturn(Optional.of(expectedPerson));
         //when
         Person actualPerson = personService.findPersonById(1L);
         //assertion
-        verify(personRepository).findById(1L);
         assertEquals(expectedPerson,actualPerson);
+    }
+
+    @Test
+    void findPlayerByID_WhenPersonIdIsNotValid(){
+        //given
+        when(personRepository.findById(anyLong())).thenReturn(Optional.ofNullable(null));
+        //when
+        Person actualPerson = personService.findPersonById(1L);
+        //assertion
+        assertNull(actualPerson);
+    }
+    @Test
+    void findPersonByName_WhenPersonExist(){
+        List<Person> personList = PersonUtils.getListOfPerson();
+        String firstName = "Parth", lastName = "Prajapati";
+        when(personRepository.findByFirstNameAndLastName(anyString(),anyString())).thenReturn(personList);
+
+        List<Person> actualPerosnList = personService.findPersonByName(firstName,lastName);
+
+        assertEquals(personList, actualPerosnList);
+    }
+
+    @Test
+    void findPersonByName_WhenPersonNotExist(){
+        String firstName = "Parth", lastName = "Prajapati";
+        when(personRepository.findByFirstNameAndLastName(anyString(),anyString())).thenReturn(Collections.emptyList());
+
+        List<Person> actualPerosnList = personService.findPersonByName(firstName,lastName);
+
+        assertTrue(actualPerosnList.isEmpty());
     }
 }

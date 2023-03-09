@@ -1,6 +1,8 @@
 package com.CricketGame.services.daoServices;
 
-import com.CricketGame.utils.Utils;
+import com.CricketGame.utils.DtoUtils;
+import com.CricketGame.utils.InningsUtils;
+import com.CricketGame.utils.MatchUtils;
 import com.cricketGame.dto.MatchDTO;
 import com.cricketGame.mappers.MatchMapper;
 import com.cricketGame.models.beans.Match;
@@ -11,10 +13,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -30,12 +30,14 @@ class MatchServiceTest {
     private MatchMapper matchMapper;
     @InjectMocks
     private MatchService  matchService;
+    @Mock
+    private MatchStarter matchStarter;
 
     @Test
     public void saveMatch(){
         //given
-        MatchDTO matchDTO = Utils.getMatchDTO();
-        Match expectedMatch = Utils.getMatch("TeamX", "TeamY");
+        MatchDTO matchDTO = DtoUtils.getMatchDTO();
+        Match expectedMatch = MatchUtils.getMatch("TeamX", "TeamY");
         when(matchMapper.toMatch(matchDTO)).thenReturn(expectedMatch);
         when(matchRepository.save(expectedMatch)).thenReturn(expectedMatch);
 
@@ -52,7 +54,7 @@ class MatchServiceTest {
     public void findMatchById_WhenIDIsValid(){
 
         //given
-        Match expectedMatch = Utils.getMatch("TeamX", "TeamY");
+        Match expectedMatch = MatchUtils.getMatch("TeamX", "TeamY");
         when(matchRepository.findById(anyLong())).thenReturn(Optional.ofNullable(expectedMatch));
 
         //when
@@ -77,4 +79,46 @@ class MatchServiceTest {
         assertEquals(actuaMatch,actuaMatch);
     }
 
+    @Test
+    public void checkMatchIsPlayedOrNot_IfMatchISValid() {
+        //given
+        Match match = MatchUtils.getMatch("TeamX", "TeamY");
+        String expectedResult = "Successfully Played Match";
+        when(matchRepository.findById(anyLong())).thenReturn(Optional.of(match));
+        when(matchStarter.startGame(any(Match.class))).thenReturn(expectedResult);
+
+        //when
+        String actualResult = matchService.checkMatchIsPlayedOrNot(10L);
+
+        //assertions
+        assertEquals(actualResult, expectedResult);
+    }
+
+    @Test
+    public void checkMatchIsPlayedOrNot_IfMatchIsNotValid() {
+        //given
+        Match match = MatchUtils.getMatch("TeamX", "TeamY");
+        match.addNewInnings(InningsUtils.getInnings());
+        String expectedResult = "Error: Match with given id is " + "already played, please create new " + "match to start";
+        when(matchRepository.findById(anyLong())).thenReturn(Optional.of(match));
+        //when
+        String actualResult = matchService.checkMatchIsPlayedOrNot(10L);
+        //assertions
+        verify(matchStarter, times(0)).startGame(any(Match.class));
+        assertEquals(actualResult, expectedResult);
+    }
+
+    @Test
+    public void findMatchPlayedByTeamById() {
+        List<Match> matches = MatchUtils.getMatchList();
+        List<MatchDTO> expectedResult = DtoUtils.getMatchList();
+        MatchDTO matchDTO1 = expectedResult.get(0);
+        MatchDTO matchDTO2 = expectedResult.get(1);
+        when(matchRepository.findMatchByTeamID(anyLong())).thenReturn(matches);
+        when(matchMapper.toMatchDto(any(Match.class))).thenReturn(matchDTO1, matchDTO2);
+
+        List<MatchDTO> actualResult = matchService.findMatchPlayedByTeamById(10L);
+
+        assertEquals(expectedResult, actualResult);
+    }
 }

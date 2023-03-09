@@ -14,9 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @Data
@@ -36,8 +34,8 @@ public class PersonService {
         return checkPerson.orElse(null);
     }
     public List<Person> findPersonByName(String firstName, String lastName){
-        List<Person> checkPerson;
-        checkPerson = this.personRepository.findByFirstNameAndLastName(firstName,lastName);
-        return checkPerson;
+        List<Person> persons = this.personRepository.findByFirstNameAndLastName(firstName,lastName);
+        if(Objects.isNull(persons)) return Collections.emptyList();
+        return persons;
     }
 }

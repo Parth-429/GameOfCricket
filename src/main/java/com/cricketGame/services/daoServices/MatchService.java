@@ -52,6 +52,8 @@ public class MatchService {
             e.printStackTrace();
             return e.getMessage();
         }
-        return  matchStarter.startGame(match);
+        String result  = matchStarter.startGame(match);
+        updateMatch(match);
+        return result;
     }
 }

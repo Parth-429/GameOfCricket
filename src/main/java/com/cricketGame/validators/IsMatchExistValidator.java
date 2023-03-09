@@ -1,14 +1,18 @@
 package com.cricketGame.validators;
 
 import com.cricketGame.models.beans.Match;
-import com.cricketGame.services.daoServices.AllService;
+import com.cricketGame.services.daoServices.MatchService;
 import com.cricketGame.validatorAnnotations.ValidMatchID;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Objects;
 
 public class IsMatchExistValidator implements ConstraintValidator<ValidMatchID,Long> {
+
+    @Autowired
+    private MatchService matchService;
 
     @Override
     public void initialize(ValidMatchID constraintAnnotation) {
@@ -19,7 +23,7 @@ public class IsMatchExistValidator implements ConstraintValidator<ValidMatchID,L
     public boolean isValid(Long matchID, ConstraintValidatorContext context) {
         if(Objects.isNull(matchID))
             return false;
-        Match match = AllService.matchService.findMatchById(matchID);
+        Match match = matchService.findMatchById(matchID);
         return !Objects.isNull(match);
     }
 }
