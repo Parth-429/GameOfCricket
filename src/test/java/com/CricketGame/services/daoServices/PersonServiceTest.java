@@ -7,19 +7,15 @@ import com.cricketGame.mappers.PersonMapper;
 import com.cricketGame.models.beans.player.Person;
 import com.cricketGame.repository.PersonRepository;
 import com.cricketGame.services.daoServices.PersonService;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
-
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)

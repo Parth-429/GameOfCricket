@@ -17,9 +17,12 @@ public class MatchStarter {
     private CoinTosser coinTosser;
     @Autowired
     private InningStarter inningStarter;
+    @Autowired
+    private ScoreCard scoreCard;
 
     public String startGame(Match match) {
-        if (coinTosser.tossCoin().equals(Coin.HEAD)) {
+        Coin tossResult = coinTosser.tossCoin();
+        if (Coin.HEAD.equals(tossResult)) {
             match.swap();
         }
         String result = "";
@@ -41,7 +44,7 @@ public class MatchStarter {
         result += (
                 secondInning.getBattingTeam().getName() + " has Scored " + secondInningScore + " by losing " +
                 ((TeamStats) secondInning.getBattingTeam().getTeamStats()).getTotalWickets() + " wickets.") + "\n";
-        result += ScoreCard.showScoreCard(match);
+        result += scoreCard.showScoreCard(match);
 
         return result;
     }

@@ -7,27 +7,30 @@ import com.cricketGame.services.generators.ObjectIDGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class TeamService {
+
     @Autowired
     private TeamRepository teamRepository;
-    public Team addTeam(String name){
+
+    public Team addTeam(String name) {
         Long teamID = ObjectIDGenerator.getID();
         Team team = new Team(teamID, name);
         return this.teamRepository.save(team);
     }
-    public Team findTeamById(Long id){
+
+    public Team findTeamById(Long id) {
         Optional<Team> checkTeam = this.teamRepository.findById(id);
         return checkTeam.orElse(null);
     }
 
-    public List<Team> findTeamByName(String name){
-        List<Team> teams;
-        teams = teamRepository.findByName(name);
+    public List<Team> findTeamByName(String name) {
+        List<Team> teams = teamRepository.findByName(name);
+        if (Objects.isNull(teams)) {
+            return Collections.emptyList();
+        }
         return teams;
     }
 }

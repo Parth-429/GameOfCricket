@@ -2,9 +2,11 @@ package com.cricketGame.view;
 
 import com.cricketGame.models.beans.Match;
 import com.cricketGame.view.showStats.MatchStats;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ScoreCard {
-    public static String showScoreCard(Match match){
+    public String showScoreCard(Match match){
         String result = "";
         result += ("\n Scorecard :\n") + "\n";
         result += ("1st Inning Summary :") + "\n";
