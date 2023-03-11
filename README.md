@@ -71,7 +71,9 @@ Validations performed :
 
 
 4. Now we are ready to start match 
+
 `    `Post "/match/start/{id}"
+
 `    `You will get these details as response:
 
 Toss result:
