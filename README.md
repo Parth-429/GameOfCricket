@@ -61,13 +61,14 @@ match                                                                           
 `        `batting Order
 
 Validations performed :
-   1. teams should be created first before creaing match
-   1. team size should match to list of players
-   1. all players in teams only created if persons are exist
-   1. minimum 2 bowlers should be in your team
-   1. order no for all bowlers should unique and positive
-   1. team size for both teams should be same
-   1. players should be unique in both teams
+1.
+      1. team size should match to list of players
+      1. all players in teams only created if persons are exist
+      1. minimum 2 bowlers should be in your team
+      1. order no for all bowlers should unique and positive
+      1. team size for both teams should be same
+      1. players should be unique in both teams
+      1. teams should be created first before creaing match
 
 
 4. Now we are ready to start match 
