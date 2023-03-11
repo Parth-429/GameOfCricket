@@ -1,6 +1,6 @@
 # GameOfCricket 
 
-Flow
+# Flow
 
 1. first create person
 
@@ -80,7 +80,9 @@ First Inning bowling and batting summary Second Inning bowling and batting summa
 
 Validation : match with given id should exist and not played before.
 
+
 # Database Design
+
 <img width="896" alt="Pasted Graphic" src="https://user-images.githubusercontent.com/123222064/224466836-3cdee354-484b-4839-87c1-8f302a25ae3a.png">
 
 
