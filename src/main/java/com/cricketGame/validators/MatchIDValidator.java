@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Objects;
 
-public class IsMatchExistValidator implements ConstraintValidator<ValidMatchID,Long> {
+public class MatchIDValidator implements ConstraintValidator<ValidMatchID,Long> {
 
     @Autowired
     private MatchService matchService;

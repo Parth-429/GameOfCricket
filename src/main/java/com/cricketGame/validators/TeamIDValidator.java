@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.Objects;
 
 
-public class IsTeamExistValidator implements ConstraintValidator<ValidTeamId, Long> {
+public class TeamIDValidator implements ConstraintValidator<ValidTeamId, Long> {
 
     @Autowired
     private TeamService teamService;

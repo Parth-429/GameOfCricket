@@ -16,7 +16,7 @@ import java.text.Format;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-@ValidAllowedTeamSize @DifferentTeams
+@ValidAllowedTeamSize @DifferentTeams @NoDuplicatePlayersInMatch
 public class MatchDTO {
     @NonNull @Valid @ValidTeamSize @MinimumBowlersRequirement @UniqueBattingOrderForAllPlayer
     private TeamDTO team1DTO;

@@ -1,6 +1,6 @@
 package com.cricketGame.validatorAnnotations;
 
-import com.cricketGame.validators.IsPersonExistValidator;
+import com.cricketGame.validators.PersonIDValidator;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 
@@ -10,7 +10,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = IsPersonExistValidator.class)
+@Constraint(validatedBy = PersonIDValidator.class)
 @Target(ElementType.FIELD)
 public @interface ValidPersonId {
     Class<?>[] groups() default {};

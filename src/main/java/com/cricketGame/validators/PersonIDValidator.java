@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Objects;
 
-public class IsPersonExistValidator implements ConstraintValidator<ValidPersonId, Long> {
+public class PersonIDValidator implements ConstraintValidator<ValidPersonId, Long> {
 
     @Autowired
     private PersonService personService;

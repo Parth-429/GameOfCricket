@@ -1,6 +1,6 @@
 package com.cricketGame.validatorAnnotations;
 
-import com.cricketGame.validators.IsTeamExistValidator;
+import com.cricketGame.validators.TeamIDValidator;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 
@@ -10,7 +10,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = IsTeamExistValidator.class)
+@Constraint(validatedBy = TeamIDValidator.class)
 @Target(ElementType.FIELD)
 public @interface ValidTeamId {
     Class<?>[] groups() default {};
