@@ -61,7 +61,6 @@ match                                                                           
 `        `batting Order
 
 Validations performed :
-1.
       1. team size should match to list of players
       1. all players in teams only created if persons are exist
       1. minimum 2 bowlers should be in your team
