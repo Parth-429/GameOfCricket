@@ -2,7 +2,9 @@ package com.cricketGame.view.showStats;
 
 import com.cricketGame.models.beans.player.Player;
 import com.cricketGame.models.stats.BowlerStats;
+import lombok.experimental.UtilityClass;
 
+@UtilityClass
 public class BallingStats {
     public static String showStats(Player bowler) {
         String stats = String.format("%-15s", bowler.getFirstName() + " " + bowler.getLastName());

@@ -9,8 +9,9 @@ import com.cricketGame.models.stats.BowlerStats;
 import com.cricketGame.view.showStats.BallingStats;
 import com.cricketGame.view.showStats.BattingStats;
 import com.cricketGame.view.showStats.TeamBattingInningStatus;
+import lombok.experimental.UtilityClass;
 
-
+@UtilityClass
 public class InningsDetails {
     public static String showInningsDetails(Innings innings){
         String result = "";

@@ -2,9 +2,10 @@ package com.cricketGame.view;
 
 import com.cricketGame.models.beans.Match;
 import com.cricketGame.view.showStats.MatchStats;
+import lombok.experimental.UtilityClass;
 import org.springframework.stereotype.Component;
 
-@Component
+@UtilityClass
 public class ScoreCard {
     public String showScoreCard(Match match){
         String result = "";

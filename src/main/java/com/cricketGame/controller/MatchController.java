@@ -33,4 +33,10 @@ public class MatchController {
     public ResponseEntity<List<MatchDTO>> findMatchesPlayedByTeam(@PathVariable Long teamId){
         return ResponseEntity.ok(matchService.findMatchPlayedByTeamById(teamId));
     }
+
+    @GetMapping("/scoreCard/{match_id}/")
+    public ResponseEntity<String> getScoreCard(@PathVariable(value = "match_id") Long matchId){
+        return ResponseEntity.ok(matchService.getScoreCard(matchId));
+    }
+
 }

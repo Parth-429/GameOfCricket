@@ -15,15 +15,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
 class BatsmanSelectorTest {
-    @InjectMocks
-    BatsmanSelector batsmanSelector;
     private final static int TEAM_SIZE = 5;
 
     @Test
     public void batsmanSelector_IfPlayersAreAvailable(){
         List<Player> players = PlayerUtils.getPlayerList(TEAM_SIZE);
 
-        Player player = batsmanSelector.selectBatsman(players);
+        Player player = BatsmanSelector.selectBatsman(players);
 
         assertEquals(TEAM_SIZE-1, players.size());
         assertEquals(player, players.get(0));
@@ -31,7 +29,7 @@ class BatsmanSelectorTest {
 
     @Test
     public void batsmanSelector_IfAllPlayersAreOut(){
-        Player player = batsmanSelector.selectBatsman(Collections.emptyList());
+        Player player = BatsmanSelector.selectBatsman(Collections.emptyList());
 
         assertNull(player);
     }

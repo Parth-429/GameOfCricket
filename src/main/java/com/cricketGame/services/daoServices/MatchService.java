@@ -5,6 +5,7 @@ import com.cricketGame.mappers.MatchMapper;
 import com.cricketGame.models.beans.Match;
 import com.cricketGame.repository.MatchRepository;
 import com.cricketGame.services.starters.MatchStarter;
+import com.cricketGame.view.ScoreCard;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,15 +14,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Data
 @Service
 public class MatchService {
     @Autowired
     private MatchRepository matchRepository;
     @Autowired
     private MatchMapper matchMapper;
-    @Autowired
-    private MatchStarter matchStarter;
     public Match saveMatch(MatchDTO matchDTO){
         Match match = matchMapper.toMatch(matchDTO);
         return this.matchRepository.save(match);
@@ -52,8 +50,13 @@ public class MatchService {
             e.printStackTrace();
             return e.getMessage();
         }
-        String result  = matchStarter.startGame(match);
+        String result  = MatchStarter.startGame(match);
         updateMatch(match);
         return result;
+    }
+
+    public String getScoreCard(Long matchId) {
+        Match match = findMatchById(matchId);
+        return ScoreCard.showScoreCard(match);
     }
 }

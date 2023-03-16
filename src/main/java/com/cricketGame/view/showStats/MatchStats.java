@@ -2,7 +2,9 @@ package com.cricketGame.view.showStats;
 
 import com.cricketGame.models.beans.Match;
 import com.cricketGame.models.stats.TeamStats;
+import lombok.experimental.UtilityClass;
 
+@UtilityClass
 public class MatchStats {
 
     public static String showStats(Match match) {

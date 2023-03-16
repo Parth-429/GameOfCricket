@@ -14,6 +14,7 @@ import com.cricketGame.services.generators.RunGenerator;
 import com.cricketGame.services.playerSelector.BatsmanSelector;
 import com.cricketGame.services.playerSelector.BowlerSelector;
 import lombok.Data;
+import lombok.experimental.UtilityClass;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -22,16 +23,8 @@ import java.util.List;
 import java.util.Objects;
 
 
-@Data
-@Component
+@UtilityClass
 public class InningStarter {
-
-    @Autowired
-    private BatsmanSelector batsmanSelector;
-    @Autowired
-    private BowlerSelector bowlerSelector;
-    @Autowired
-    private RunGenerator runGenerator;
     public int playInning(TeamHistory battingTeam, TeamHistory bowlingTeam, Innings inning, Boolean isSecondInning) {
 
         boolean isAllOut = false;
@@ -43,8 +36,8 @@ public class InningStarter {
             }
         }
 
-        PartnerShip partnerShipOfStrikerNonStriker = new PartnerShip(batsmanSelector.selectBatsman(battingTeamBatsman),
-                batsmanSelector.selectBatsman(battingTeamBatsman));
+        PartnerShip partnerShipOfStrikerNonStriker = new PartnerShip(BatsmanSelector.selectBatsman(battingTeamBatsman),
+                BatsmanSelector.selectBatsman(battingTeamBatsman));
         int target = Integer.MAX_VALUE;
         if (isSecondInning) {
             target = ((TeamStats) (bowlingTeam.getTeamStats())).getTotalScore();
@@ -52,14 +45,14 @@ public class InningStarter {
         Player bowler = null;
 
         for (Over over : inning.getOvers()) {
-            bowler = bowlerSelector.selectBowler(bowler, bowlingTeamBowlers);
+            bowler = BowlerSelector.selectBowler(bowler, bowlingTeamBowlers);
             for (int ball = Constants.BALL_START; ball <= Constants.MAX_BALLS_IN_ONE_OVER; ball++) {
 
                 Runs runOnThisBall = getRuns(partnerShipOfStrikerNonStriker);
                 addBalltoOver(partnerShipOfStrikerNonStriker, bowler, over, runOnThisBall);
                 if (runOnThisBall.equals(Runs.WICKET)) {
                     updateStatisticsAfterWicket(inning, battingTeamBatsman, partnerShipOfStrikerNonStriker, over, ball, runOnThisBall);
-                    partnerShipOfStrikerNonStriker = new PartnerShip(batsmanSelector.selectBatsman(battingTeamBatsman),
+                    partnerShipOfStrikerNonStriker = new PartnerShip(BatsmanSelector.selectBatsman(battingTeamBatsman),
                             partnerShipOfStrikerNonStriker.getNonStriker());
                     isAllOut = checkIsAllOut(false, partnerShipOfStrikerNonStriker);
                 } else {
@@ -121,9 +114,9 @@ public class InningStarter {
     private Runs getRuns(PartnerShip partnerShipOfStrikerNonStriker) {
         Runs runOnThisBall;
         if (Role.BATSMAN.equals(getStriker(partnerShipOfStrikerNonStriker).getRole())) {
-            runOnThisBall = runGenerator.generateRun(Role.BATSMAN);
+            runOnThisBall = RunGenerator.generateRun(Role.BATSMAN);
         } else {
-            runOnThisBall = runGenerator.generateRun(Role.BOWLER);
+            runOnThisBall = RunGenerator.generateRun(Role.BOWLER);
         }
         return runOnThisBall;
     }

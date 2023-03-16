@@ -1,12 +1,10 @@
 package com.cricketGame.services.generators;
 
 import com.cricketGame.models.enums.Coin;
-import org.springframework.stereotype.Component;
-
-import java.util.List;
+import lombok.experimental.UtilityClass;
 import java.util.Random;
 
-@Component
+@UtilityClass
 public class CoinTosser {
     public Coin tossCoin(){
         Random rm = RandomNumberGenerator.getInstance();

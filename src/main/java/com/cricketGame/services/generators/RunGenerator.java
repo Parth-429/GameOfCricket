@@ -2,13 +2,13 @@ package com.cricketGame.services.generators;
 
 import com.cricketGame.models.enums.Role;
 import com.cricketGame.models.enums.Runs;
+import lombok.experimental.UtilityClass;
 import org.springframework.stereotype.Component;
 
 import java.util.Random;
 
-@Component
+@UtilityClass
 public class RunGenerator {
-
     public Runs generateRun(Role role){
         Random rm = RandomNumberGenerator.getInstance();
         if(Role.BATSMAN.equals(role))

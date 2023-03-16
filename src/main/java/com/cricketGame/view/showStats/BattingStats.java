@@ -4,7 +4,9 @@ import com.cricketGame.models.beans.player.Player;
 import com.cricketGame.models.enums.PlayerBattingStatus;
 import com.cricketGame.models.enums.RunStatistics;
 import com.cricketGame.models.stats.BatsmanStats;
+import lombok.experimental.UtilityClass;
 
+@UtilityClass
 public class BattingStats {
     public static String showStats(Player batsman) {
         String nameOfBatsman = String.format("%-15s", batsman.getFirstName() + " " + batsman.getLastName());

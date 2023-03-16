@@ -19,8 +19,6 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class BowlerSelectorTest {
-    @InjectMocks
-    private BowlerSelector bowlerSelector;
     private final static int TEAM_SIZE = 5;
 
     @Test
@@ -28,7 +26,7 @@ class BowlerSelectorTest {
         List<Player> players = PlayerUtils.getPlayerList(TEAM_SIZE);
         Player expectedBowler = players.get(0);
 
-        Player actualPlayer = bowlerSelector.selectBowler(null, players);
+        Player actualPlayer = BowlerSelector.selectBowler(null, players);
 
         assertEquals(expectedBowler, actualPlayer);
     }
@@ -38,7 +36,7 @@ class BowlerSelectorTest {
         List<Player> players = PlayerUtils.getPlayerList(TEAM_SIZE);
         Player prevBowler = players.get(1);
 
-        Player actualPlayer = bowlerSelector.selectBowler(prevBowler, players);
+        Player actualPlayer = BowlerSelector.selectBowler(prevBowler, players);
 
         assertNotEquals(prevBowler.getId(), actualPlayer.getId());
     }

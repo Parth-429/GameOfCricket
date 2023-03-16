@@ -7,21 +7,15 @@ import com.cricketGame.models.stats.TeamStats;
 import com.cricketGame.services.generators.CoinTosser;
 import com.cricketGame.view.ScoreCard;
 import lombok.Data;
+import lombok.experimental.UtilityClass;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-@Data
-@Component
+@UtilityClass
 public class MatchStarter {
-    @Autowired
-    private CoinTosser coinTosser;
-    @Autowired
-    private InningStarter inningStarter;
-    @Autowired
-    private ScoreCard scoreCard;
 
     public String startGame(Match match) {
-        Coin tossResult = coinTosser.tossCoin();
+        Coin tossResult = CoinTosser.tossCoin();
         if (Coin.HEAD.equals(tossResult)) {
             match.swap();
         }
@@ -31,7 +25,7 @@ public class MatchStarter {
 
 
         Innings firstInning = match.addNewInnings(new Innings(match.getTeam1(), match.getTeam2()));
-        int firstInningScore = inningStarter.playInning(firstInning.getBattingTeam(), firstInning.getBowlingTeam(),
+        int firstInningScore = InningStarter.playInning(firstInning.getBattingTeam(), firstInning.getBowlingTeam(),
                 firstInning, false);
         result += (firstInning.getBattingTeam().getName() + " has Scored " + firstInningScore + " by losing " +
                            ((TeamStats) firstInning.getBattingTeam().getTeamStats()).getTotalWickets() + " wickets.") + "\n";
@@ -39,13 +33,12 @@ public class MatchStarter {
         result += ("\nInning two is started and Target is " + (firstInningScore + 1) + " ...") + "\n";
 
         Innings secondInning = match.addNewInnings(new Innings(match.getTeam2(), match.getTeam1()));
-        int secondInningScore = inningStarter.playInning(secondInning.getBattingTeam(), secondInning.getBowlingTeam(),
+        int secondInningScore = InningStarter.playInning(secondInning.getBattingTeam(), secondInning.getBowlingTeam(),
                 secondInning, true);
         result += (
                 secondInning.getBattingTeam().getName() + " has Scored " + secondInningScore + " by losing " +
                 ((TeamStats) secondInning.getBattingTeam().getTeamStats()).getTotalWickets() + " wickets.") + "\n";
-        result += scoreCard.showScoreCard(match);
-
+        result += ScoreCard.showScoreCard(match);
         return result;
     }
 
