@@ -2,7 +2,7 @@ package com.cricketGame.validators;
 
 
 import com.cricketGame.models.beans.team.Team;
-import com.cricketGame.services.daoServicesImpl.TeamService;
+import com.cricketGame.services.daoServicesImpl.TeamServiceImpl;
 import com.cricketGame.validatorAnnotations.ValidTeamId;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
@@ -14,7 +14,7 @@ import java.util.Objects;
 public class TeamIDValidator implements ConstraintValidator<ValidTeamId, Long> {
 
     @Autowired
-    private TeamService teamService;
+    private TeamServiceImpl teamService;
 
     @Override
     public void initialize(ValidTeamId constraintAnnotation) {

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.*;
 
 @Service
-public class PersonService implements com.cricketGame.services.daoServices.PersonService {
+public class PersonServiceImpl implements com.cricketGame.services.daoServices.PersonService {
     @Autowired
     private PersonRepository personRepository;
     @Autowired

@@ -1,7 +1,7 @@
 package com.cricketGame.validators;
 
 import com.cricketGame.models.beans.Match;
-import com.cricketGame.services.daoServicesImpl.MatchService;
+import com.cricketGame.services.daoServicesImpl.MatchServiceImpl;
 import com.cricketGame.validatorAnnotations.ValidMatchID;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
@@ -12,7 +12,7 @@ import java.util.Objects;
 public class MatchIDValidator implements ConstraintValidator<ValidMatchID,Long> {
 
     @Autowired
-    private MatchService matchService;
+    private MatchServiceImpl matchService;
 
     @Override
     public void initialize(ValidMatchID constraintAnnotation) {

@@ -5,6 +5,7 @@ import com.cricketGame.models.beans.team.Team;
 import java.util.List;
 
 public interface TeamService {
-    List<Team> findTeamByName(String name);
+    Team addTeam(String name);
     Team findTeamById(Long id);
+    List<Team> findTeamByName(String name);
 }

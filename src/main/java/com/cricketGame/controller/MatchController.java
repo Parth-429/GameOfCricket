@@ -4,7 +4,7 @@ package com.cricketGame.controller;
 import com.cricketGame.dto.MatchDTO;
 import com.cricketGame.mappers.MatchMapper;
 import com.cricketGame.models.beans.Match;
-import com.cricketGame.services.daoServicesImpl.MatchService;
+import com.cricketGame.services.daoServices.MatchService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -73,17 +73,6 @@ public class MatchController {
     @GetMapping("/playedMatches/{team_id}/")
     public ResponseEntity<List<MatchDTO>> findMatchesPlayedByTeam(@PathVariable Long teamId){
         return ResponseEntity.ok(matchService.findMatchPlayedByTeamById(teamId));
-    }
-
-    /**
-     *  It retursn scorecard of match
-     * @param matchId It required valid match id to be passed.
-     * @return all details about played match
-     * @throws IllegalArgumentException if match not has been played yet
-     */
-    @GetMapping("/scoreCard/{match_id}/")
-    public ResponseEntity<Match> getScoreCard(@PathVariable(value = "match_id") Long matchId){
-        return ResponseEntity.ok(matchService.getScoreCard(matchId));
     }
 
 }

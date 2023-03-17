@@ -7,7 +7,7 @@ import com.cricketGame.dto.TeamDTO;
 import com.cricketGame.models.beans.Match;
 import com.cricketGame.models.beans.team.TeamHistory;
 import com.cricketGame.models.enums.MatchFormat;
-import com.cricketGame.services.daoServicesImpl.TeamHistoryService;
+import com.cricketGame.services.daoServices.TeamHistoryService;
 import com.cricketGame.services.generators.ObjectIDGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

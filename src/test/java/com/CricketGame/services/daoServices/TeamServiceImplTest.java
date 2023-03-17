@@ -3,7 +3,7 @@ package com.CricketGame.services.daoServices;
 import com.CricketGame.utils.TeamUtils;
 import com.cricketGame.models.beans.team.Team;
 import com.cricketGame.repository.TeamRepository;
-import com.cricketGame.services.daoServicesImpl.TeamService;
+import com.cricketGame.services.daoServicesImpl.TeamServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
@@ -21,10 +21,10 @@ import static org.mockito.Mockito.*;
 
 
 @ExtendWith(MockitoExtension.class)
-class TeamServiceTest {
+class TeamServiceImplTest {
 
     @InjectMocks
-    private TeamService teamService;
+    private TeamServiceImpl teamService;
     @Mock
     private TeamRepository teamRepository;
     @Captor

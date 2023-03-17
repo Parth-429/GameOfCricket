@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class TeamHistoryService implements com.cricketGame.services.daoServices.TeamHistoryService {
+public class TeamHistoryServiceImpl implements com.cricketGame.services.daoServices.TeamHistoryService {
 
     @Autowired
     private TeamHistoryRepository teamHistoryRepository;

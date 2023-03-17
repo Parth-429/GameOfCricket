@@ -5,7 +5,7 @@ import com.cricketGame.dto.TeamDTO;
 import com.cricketGame.mappers.TeamMapper;
 import com.cricketGame.models.beans.team.TeamHistory;
 import com.cricketGame.repository.TeamHistoryRepository;
-import com.cricketGame.services.daoServicesImpl.TeamHistoryService;
+import com.cricketGame.services.daoServicesImpl.TeamHistoryServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -21,13 +21,13 @@ import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class TeamHistoryServiceTest {
+class TeamHistoryServiceImplTest {
     @Mock
     private TeamHistoryRepository teamHistoryRepository;
     @Mock
     private TeamMapper teamMapper;
     @InjectMocks
-    private TeamHistoryService teamHistoryService;
+    private TeamHistoryServiceImpl teamHistoryService;
 
     @Test
     void saveTeam() {

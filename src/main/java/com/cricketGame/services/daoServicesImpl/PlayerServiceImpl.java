@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class PlayerService implements com.cricketGame.services.daoServices.PlayerService {
+public class PlayerServiceImpl implements com.cricketGame.services.daoServices.PlayerService {
     @Autowired
     private PlayerRepository playerRepository;
     @Autowired

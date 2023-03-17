@@ -7,7 +7,7 @@ import com.cricketGame.dto.MatchDTO;
 import com.cricketGame.mappers.MatchMapper;
 import com.cricketGame.models.beans.Match;
 import com.cricketGame.repository.MatchRepository;
-import com.cricketGame.services.daoServicesImpl.MatchService;
+import com.cricketGame.services.daoServicesImpl.MatchServiceImpl;
 import com.cricketGame.services.starters.MatchStarter;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -23,13 +23,13 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 
-class MatchServiceTest {
+class MatchServiceImplTest {
     @Mock
     private MatchRepository matchRepository;
     @Mock
     private MatchMapper matchMapper;
     @InjectMocks
-    private MatchService matchService;
+    private MatchServiceImpl matchService;
     @Mock
     private MatchStarter matchStarter;
 

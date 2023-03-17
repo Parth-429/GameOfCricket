@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class MatchService implements com.cricketGame.services.daoServices.MatchService {
+public class MatchServiceImpl implements com.cricketGame.services.daoServices.MatchService {
     @Autowired
     private MatchRepository matchRepository;
     @Autowired

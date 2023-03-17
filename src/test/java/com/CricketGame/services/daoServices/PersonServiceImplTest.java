@@ -6,7 +6,7 @@ import com.cricketGame.dto.PersonDTO;
 import com.cricketGame.mappers.PersonMapper;
 import com.cricketGame.models.beans.player.Person;
 import com.cricketGame.repository.PersonRepository;
-import com.cricketGame.services.daoServicesImpl.PersonService;
+import com.cricketGame.services.daoServicesImpl.PersonServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.*;
@@ -19,13 +19,13 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-class PersonServiceTest {
+class PersonServiceImplTest {
     @Mock
     PersonRepository personRepository;
     @Mock
     PersonMapper personMapper;
     @InjectMocks
-    PersonService personService;
+    PersonServiceImpl personService;
     @Test
     void savePerson() {
         //given

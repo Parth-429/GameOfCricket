@@ -7,7 +7,7 @@ import com.cricketGame.mappers.PlayerMapper;
 import com.cricketGame.models.beans.player.Player;
 import com.cricketGame.models.enums.Role;
 import com.cricketGame.repository.PlayerRepository;
-import com.cricketGame.services.daoServicesImpl.PlayerService;
+import com.cricketGame.services.daoServicesImpl.PlayerServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -21,13 +21,13 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-class PlayerServiceTest {
+class PlayerServiceImplTest {
     @Mock
     private PlayerRepository playerRepository;
     @Mock
     private PlayerMapper playerMapper;
     @InjectMocks
-    private PlayerService playerService;
+    private PlayerServiceImpl playerService;
 
     @Test
     public void savePlayer(){
