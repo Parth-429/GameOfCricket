@@ -1,7 +1,7 @@
 package com.cricketGame.validators;
 
 import com.cricketGame.models.beans.Match;
-import com.cricketGame.services.daoServices.MatchService;
+import com.cricketGame.services.daoServicesImpl.MatchService;
 import com.cricketGame.validatorAnnotations.ValidMatchID;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;

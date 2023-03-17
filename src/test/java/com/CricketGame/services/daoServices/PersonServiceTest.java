@@ -6,7 +6,7 @@ import com.cricketGame.dto.PersonDTO;
 import com.cricketGame.mappers.PersonMapper;
 import com.cricketGame.models.beans.player.Person;
 import com.cricketGame.repository.PersonRepository;
-import com.cricketGame.services.daoServices.PersonService;
+import com.cricketGame.services.daoServicesImpl.PersonService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.*;

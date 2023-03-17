@@ -1,7 +1,7 @@
 package com.cricketGame.validators;
 
 import com.cricketGame.models.beans.player.Person;
-import com.cricketGame.services.daoServices.PersonService;
+import com.cricketGame.services.daoServicesImpl.PersonService;
 import com.cricketGame.validatorAnnotations.ValidPersonId;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;

@@ -7,7 +7,7 @@ import com.cricketGame.dto.MatchDTO;
 import com.cricketGame.mappers.MatchMapper;
 import com.cricketGame.models.beans.Match;
 import com.cricketGame.repository.MatchRepository;
-import com.cricketGame.services.daoServices.MatchService;
+import com.cricketGame.services.daoServicesImpl.MatchService;
 import com.cricketGame.services.starters.MatchStarter;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -29,7 +29,7 @@ class MatchServiceTest {
     @Mock
     private MatchMapper matchMapper;
     @InjectMocks
-    private MatchService  matchService;
+    private MatchService matchService;
     @Mock
     private MatchStarter matchStarter;
 

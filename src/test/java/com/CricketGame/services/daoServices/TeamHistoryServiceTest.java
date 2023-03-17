@@ -5,7 +5,7 @@ import com.cricketGame.dto.TeamDTO;
 import com.cricketGame.mappers.TeamMapper;
 import com.cricketGame.models.beans.team.TeamHistory;
 import com.cricketGame.repository.TeamHistoryRepository;
-import com.cricketGame.services.daoServices.TeamHistoryService;
+import com.cricketGame.services.daoServicesImpl.TeamHistoryService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

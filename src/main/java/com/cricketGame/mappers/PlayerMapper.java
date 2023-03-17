@@ -6,14 +6,13 @@ import com.cricketGame.models.beans.player.Batsman;
 import com.cricketGame.models.beans.player.Bowler;
 import com.cricketGame.models.beans.player.Person;
 import com.cricketGame.models.beans.player.Player;
-import com.cricketGame.services.daoServices.PersonService;
+import com.cricketGame.services.daoServicesImpl.PersonService;
 import com.cricketGame.services.generators.ObjectIDGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class PlayerMapper {
-
     @Autowired
     private PersonService personService;
     public PlayerDTO toPlayerDto(Player player){

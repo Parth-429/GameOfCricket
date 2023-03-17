@@ -7,7 +7,7 @@ import com.cricketGame.mappers.PlayerMapper;
 import com.cricketGame.models.beans.player.Player;
 import com.cricketGame.models.enums.Role;
 import com.cricketGame.repository.PlayerRepository;
-import com.cricketGame.services.daoServices.PlayerService;
+import com.cricketGame.services.daoServicesImpl.PlayerService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

@@ -2,7 +2,7 @@ package com.cricketGame.validators;
 
 
 import com.cricketGame.models.beans.team.Team;
-import com.cricketGame.services.daoServices.TeamService;
+import com.cricketGame.services.daoServicesImpl.TeamService;
 import com.cricketGame.validatorAnnotations.ValidTeamId;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
